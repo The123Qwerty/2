@@ -74,6 +74,7 @@ GameManager.prototype.addRandomTile = function () {
           if (tempText = "") {break;}
           text += tempText;
         }
+    }
     var tile = new Tile(this.grid.randomAvailableCell(), value, text);
     
     this.grid.insertTile(tile);
