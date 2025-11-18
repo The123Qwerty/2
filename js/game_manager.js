@@ -58,13 +58,14 @@ GameManager.prototype.addStartTiles = function () {
 
 // Adds a tile in a random position
 GameManager.prototype.addRandomTile = function () {
-  const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+  const alphabet = [" ", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
   if (this.grid.cellsAvailable()) {
-    var value = Math.random() < 0.99 ? 99991 : 1;
+    var value = Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? 1 : 999926: 999925: 999924: 999923: 999922: 999921: 999920: 999919: 999918: 999917: 999916: 999915: 999914: 999913: 999912: 999911: 999910: 99999: 99998: 99997: 99996: 99995: 99994: 99993: 99992: 99991;
     var text = value.toString();
     if (value > 99990)
     {
-      text = alphabet[value % 10];
+      text = alphabet[Math.floor(value / 10000)];
+      
     }
     var tile = new Tile(this.grid.randomAvailableCell(), value, text);
     
