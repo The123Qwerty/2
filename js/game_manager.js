@@ -64,11 +64,9 @@ GameManager.prototype.addRandomTile = function () {
     var text = value.toString();
     if (value > 99990)
     {
-      text = value % 10;
-      // text = alphabet[value % 10];
+      text = alphabet[value % 10];
       if (value > 999900)
-        text = `Second if and value % 100 is ${value % 100}`;
-        // text = alphabet[value % 100];
+        text = alphabet[value % 100];
     }
     var tile = new Tile(this.grid.randomAvailableCell(), value, text);
     
