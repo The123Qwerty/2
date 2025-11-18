@@ -64,7 +64,7 @@ GameManager.prototype.addRandomTile = function () {
     var text = value.toString();
     if (value > 99990)
     {
-      text = `First if and value % 10 is ${value % 10}`;
+      text = value % 10;
       // text = alphabet[value % 10];
       if (value > 999900)
         text = `Second if and value % 100 is ${value % 100}`;
@@ -138,9 +138,9 @@ GameManager.prototype.move = function (direction) {
 
         // Only one merger per row traversal?
         if (next && next.value === tile.value && !next.mergedFrom) { 
-          var merged = new Tile(positions.next, tile.value);
+          var merged = new Tile(positions.next, tile.value, tile.text);
            if (tile.value === 204)
-            var merged = new Tile(positions.next, tile.value = 1);
+            var merged = new Tile(positions.next, tile.value = 1, tile.text);
           merged.mergedFrom = [tile, next];
 
           self.grid.insertTile(merged);
