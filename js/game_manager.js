@@ -61,7 +61,7 @@ GameManager.prototype.addRandomTile = function () {
   const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
   if (this.grid.cellsAvailable()) {
     var value = Math.random() < 0.99 ? 99991 : 1;
-    var text = value;
+    var text = value.toString();
     if (value > 99990)
     {
       text = alphabet[value % 10];
