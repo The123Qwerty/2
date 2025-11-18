@@ -61,12 +61,12 @@ GameManager.prototype.addRandomTile = function () {
   const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
   if (this.grid.cellsAvailable()) {
     var value = Math.random() < 0.99 ? 99991 : 1;
-    var tile = new Tile(this.grid.randomAvailableCell(), value);
-    tile.text = value;
+    var text = value;
     if (value > 99990)
     {
-      tile.text = alphabet[value % 10];
+      var text = alphabet[value % 10];
     }
+    var tile = new Tile(this.grid.randomAvailableCell(), value, text);
     
     this.grid.insertTile(tile);
     this.score += 1;
