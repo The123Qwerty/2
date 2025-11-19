@@ -62,14 +62,11 @@ GameManager.prototype.addRandomTile = function () {
   if (this.grid.cellsAvailable()) {
     var value = Math.random() < 0.9999 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? 999926: 999925: 999924: 999923: 999922: 999921: 999920: 999919: 999918: 999917: 999916: 999915: 999914: 999913: 999912: 999911: 999910: 99999: 99998: 99997: 99996: 99995: 99994: 99993: 99992: 99991: 1;
     var text = value.toString();
-    if (value > 99990)
-    {
+    if (value > 99990) {
       text = alphabet[value % 10];
-      if (value > 999900)
-        text = alphabet[value % 100];
+      if (value > 999900) { text = alphabet[value % 100]; }
 
-      for (let i = 0; i < 3; i++)
-        {
+      for (let i = 0; i < 3; i++) {
           // var tempText = Math.random() < 0.333 ? Math.random() < 0.25 ? Math.random() < 0.2 ? Math.random() < 0.166667 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? "Z": "Y": "X": "W": "V": "U": "T": "S": "R": "Q": "P": "O": "N": "M": "L": "K": "J": "I": "H": "G": "F": "E": "D": "C": "B": "A": "";
           // if (tempText = "") {break;}
           // text += tempText;
