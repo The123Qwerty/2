@@ -150,7 +150,7 @@ GameManager.prototype.move = function (direction) {
         // Only one merger per row traversal?
         if (next && next.text === tile.text && !next.mergedFrom) { 
           var merged = new Tile(positions.next, tile.value, tile.text, Math.min(next.id, tile.id));
-          this.ids[Math.max(next.id, tile.id) - 1] = false;
+          //this.ids[Math.max(next.id, tile.id) - 1] = false;
           merged.mergedFrom = [tile, next];
 
           self.grid.insertTile(merged);
