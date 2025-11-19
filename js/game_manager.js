@@ -73,6 +73,8 @@ GameManager.prototype.addRandomTile = function () {
           text += tempText;
         }
     }
+
+    //Assign the first available id and mark it as taken
     var id = -1;
     for (let i = 0; this.ids[i]; i++)
     {
@@ -81,12 +83,110 @@ GameManager.prototype.addRandomTile = function () {
     id++;
     this.ids[id] = true;
     id++;
+
+    for (let i = 0; i < text.length; i++)
+    {
+      this.setTileColor(id, text[i], i + 1);
+    }
+    
     var tile = new Tile(this.grid.randomAvailableCell(), value, text, id);
     
     this.grid.insertTile(tile);
     this.score += 1;
   }
 };
+
+Gamemanager.prototype.setTileColor = function (tileId, tileText, colorNum) {
+  var r = document.querySelector('html');
+  if (tileText == "A") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#725e6b');
+  }
+  if (tileText == "B") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#a1191d');
+  }
+  if (tileText == "C") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#a4b9d2');
+  }
+  if (tileText == "D") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#c6a182');
+  }
+  if (tileText == "E") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#f8f5f3');
+  }
+  if (tileText == "F") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#783205');
+  }
+  if (tileText == "G") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#a6e7a9');
+  }
+  if (tileText == "H") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#229a39');
+  }
+  if (tileText == "I") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#a684da');
+  }
+  if (tileText == "J") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#a09940');
+  }
+  if (tileText == "K") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#5fd65a');
+  }
+  if (tileText == "L") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#1a519c');
+  }
+  if (tileText == "M") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#cc4f3c');
+  }
+  if (tileText == "N") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#2198d5');
+  }
+  if (tileText == "O") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#8a85a7');
+  }
+  if (tileText == "P") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#1c5e4f');
+  }
+  if (tileText == "Q") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#906132');
+  }
+  if (tileText == "R") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#883661');
+  }
+  if (tileText == "S") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#8e69d9');
+  }
+  if (tileText == "T") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#e9ccea');
+  }
+  if (tileText == "U") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#f3e7f1');
+  }
+  if (tileText == "V") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#aa665d');
+  }
+  if (tileText == "W") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#a1d206');
+  }
+  if (tileText == "X") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#a179af');
+  }
+  if (tileText == "Y") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#c05495');
+  }
+  if (tileText == "Z") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#2f88ff');
+  }
+  if (tileText == "1") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#7c7f66');
+  }
+
+  if (colorNum < 3)
+  {
+    r.style.setProperty('--tile' + id + 'bgcolor' + (colorNum + 1), 'var (--tile' + id + 'bgcolor' + colorNum + ')');
+    if (colorNum < 2)
+      r.style.setProperty('--tile' + id + 'bgcolor' + (colorNum + 1), 'var (--tile' + id + 'bgcolor' + (colorNum + 1) + ')');
+  }
+}
 
 // Sends the updated grid to the actuator
 GameManager.prototype.actuate = function () {
