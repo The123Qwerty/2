@@ -66,8 +66,8 @@ GameManager.prototype.addRandomTile = function () {
       text = alphabet[value % 10];
       if (value > 999900) { text = alphabet[value % 100]; }
 
-      for (let i = 0; i < 3; i++) {
-          var tempText = Math.random() < 0.333 ? Math.random() < 0.25 ? Math.random() < 0.2 ? Math.random() < 0.166667 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? "Z": "Y": "X": "W": "V": "U": "T": "S": "R": "Q": "P": "O": "N": "M": "L": "K": "J": "I": "H": "G": "F": "E": "D": "C": "B": "A": "";
+      for (let i = 0; i < 2; i++) {
+          var tempText = Math.random() < 0.999999 ? Math.random() < 0.99999 ? Math.random() < 0.9999 ? Math.random() < 0.999 ? Math.random() < 0.998 ? Math.random() < 0.9975 ? Math.random() < 0.996666667 ? Math.random() < 0.995 ? Math.random() < 0.99 ? Math.random() < 0.98 ? Math.random() < 0.966666667 ? Math.random() < 0.96 ? Math.random() < 0.95 ? Math.random() < 0.93333333 ? Math.random() < 0.928571429 ? Math.random() < 0.923076923 ? Math.random() < 0.9166667 ? Math.random() < 0.90909090909 ? Math.random() < 0.9 ? Math.random() < 0.888888889 ? Math.random() < 0.875 ? Math.random() < 0.857142857 ? Math.random() < 0.83333 ? Math.random() < 0.8 ? Math.random() < 0.75 ? Math.random() < 0.66667 ? "": "A": "B": "C": "D": "E": "F": "G": "H": "I": "J": "K": "L": "M": "N": "O": "P": "Q": "R": "S": "T": "U": "V": "W": "X": "Y": "Z";
           //if (tempText = "") {break;}
           text += tempText;
         }
