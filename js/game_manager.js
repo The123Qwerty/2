@@ -70,9 +70,10 @@ GameManager.prototype.addRandomTile = function () {
 
       for (let i = 0; i < 3; i++)
         {
-          var tempText = Math.random() < 0.333 ? Math.random() < 0.25 ? Math.random() < 0.2 ? Math.random() < 0.166667 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? "Z": "Y": "X": "W": "V": "U": "T": "S": "R": "Q": "P": "O": "N": "M": "L": "K": "J": "I": "H": "G": "F": "E": "D": "C": "B": "A": "";
-          if (tempText = "") {break;}
-          text += tempText;
+          // var tempText = Math.random() < 0.333 ? Math.random() < 0.25 ? Math.random() < 0.2 ? Math.random() < 0.166667 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? Math.random() < 0.1 ? "Z": "Y": "X": "W": "V": "U": "T": "S": "R": "Q": "P": "O": "N": "M": "L": "K": "J": "I": "H": "G": "F": "E": "D": "C": "B": "A": "";
+          // if (tempText = "") {break;}
+          // text += tempText;
+          text += "Z";
         }
     }
     var tile = new Tile(this.grid.randomAvailableCell(), value, text);
