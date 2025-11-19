@@ -96,7 +96,7 @@ GameManager.prototype.addRandomTile = function () {
   }
 };
 
-GameManager.prototype.setTileColor = function (tileId, tileText, colorNum) {
+GameManager.prototype.setTileColor = function (id, tileText, colorNum) {
   var r = document.querySelector('html');
   if (tileText == "A") {
     r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#725e6b');
