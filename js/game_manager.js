@@ -73,8 +73,8 @@ GameManager.prototype.addRandomTile = function () {
           text += tempText;
         }
     }
-    var id = -3;
-    for (let i = -1; this.ids[i]; i++)
+    var id = -1;
+    for (let i = 0; this.ids[i]; i++)
     {
       id = i;
     }
