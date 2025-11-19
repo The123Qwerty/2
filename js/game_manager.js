@@ -5,6 +5,7 @@ function GameManager(size, InputManager, Actuator, ScoreManager) {
   this.actuator     = new Actuator;
 
   this.startTiles   = 1;
+  this.ids          = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 
   this.inputManager.on("move", this.move.bind(this));
   this.inputManager.on("restart", this.restart.bind(this));
@@ -72,7 +73,15 @@ GameManager.prototype.addRandomTile = function () {
           text += tempText;
         }
     }
-    var tile = new Tile(this.grid.randomAvailableCell(), value, text);
+    var id = -3;
+    for (let i = 0; this.ids[i]; i++)
+    {
+      id = i;
+    }
+    id++;
+    this.ids[id] = true;
+    id++;
+    var tile = new Tile(this.grid.randomAvailableCell(), value, text, id);
     
     this.grid.insertTile(tile);
     this.score += 1;
@@ -140,9 +149,8 @@ GameManager.prototype.move = function (direction) {
 
         // Only one merger per row traversal?
         if (next && next.text === tile.text && !next.mergedFrom) { 
-          var merged = new Tile(positions.next, tile.value, tile.text);
-           if (tile.value === 204)
-            var merged = new Tile(positions.next, tile.value = 1, tile.text);
+          var merged = new Tile(positions.next, tile.value, tile.text, Math.min(next.id, tile.id));
+          this.ids[Math.max(next.id, tile.id) - 1] = false;
           merged.mergedFrom = [tile, next];
 
           self.grid.insertTile(merged);
