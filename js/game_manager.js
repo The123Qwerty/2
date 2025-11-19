@@ -151,7 +151,7 @@ GameManager.prototype.move = function (direction) {
         if (next && next.text === tile.text && !next.mergedFrom) { 
           var merged = new Tile(positions.next, tile.value, tile.text, Math.min(next.id, tile.id));
           
-          console.log("next.id: " + next.id + ", tile.id: " + tile.id + "ids: " + this.ids.toString());
+          console.log("next.id: " + next.id + ", tile.id: " + tile.id + "ids: " + this.ids.length);
           
           this.ids[Math.max(next.id, tile.id) - 1] = false;
           merged.mergedFrom = [tile, next];
