@@ -74,7 +74,7 @@ GameManager.prototype.addRandomTile = function () {
         }
     }
     var id = -3;
-    for (let i = 0; this.ids[i]; i++)
+    for (let i = -1; this.ids[i]; i++)
     {
       id = i;
     }
