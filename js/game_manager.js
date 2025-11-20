@@ -177,8 +177,9 @@ GameManager.prototype.setTileColor = function (id, tileText, colorNum) {
     r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#2f88ff');
   }
   if (tileText == "1") {
+    console.log('Value of that variable before: ' + getComputedStyle(r).getPropertyValue('--tile1bgcolor1'));
     r.style.setProperty('--tile1bgcolor1', '#7c7f66');
-    console.log('Code gets here');
+    console.log('Value of that variable after: ' + getComputedStyle(r).getPropertyValue('--tile1bgcolor1'));
   }
 
   if (colorNum < 3)
