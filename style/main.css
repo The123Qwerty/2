@@ -2,14 +2,11 @@
 html, body {
   margin: 0;
   padding: 0;
-  /*
   background: #d9ffe5;
-  */
-  --tile1bgcolor1: red;
-  background: var(--tile1bgcolor1);
   color: #290206;
   font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
-  font-size: 18px; 
+  font-size: 18px;
+  --tile1bgcolor1: red;
   --tile1bgcolor2: red;
   --tile1bgcolor3: red;
   --tile1fontcolor: #f9f6f2;
