@@ -182,11 +182,16 @@ GameManager.prototype.setTileColor = function (id, tileText, colorNum) {
     console.log('Value of that variable after: ' + getComputedStyle(r).getPropertyValue('--tile1bgcolor1'));
   }
 
-  if (colorNum < 3)
+  if (colorNum == 1)
   {
-    r.style.setProperty('--tile' + id + 'bgcolor' + (colorNum + 1), 'var(--tile' + id + 'bgcolor' + colorNum + ')');
-    if (colorNum < 2)
-      r.style.setProperty('--tile' + id + 'bgcolor' + (colorNum + 1), 'var(--tile' + id + 'bgcolor' + (colorNum + 1) + ')');
+    var color1 = getComputedStyle(r).getPropertyValue('--tile' + id + 'bgcolor1');
+    r.style.setProperty('--tile' + id + 'bgcolor2', color1);
+    r.style.setProperty('--tile' + id + 'bgcolor3', color1);
+  }
+  if (colorNum == 2)
+  {
+    var color2 = getComputedStyle(r).getPropertyValue('--tile' + id + 'bgcolor2');
+    r.style.setProperty('--tile' + id + 'bgcolor3', color2);
   }
 }
 
