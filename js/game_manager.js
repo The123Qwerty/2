@@ -180,23 +180,7 @@ GameManager.prototype.setTileColor = function (id, tileText, colorNum) {
     //r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#7c7f66');
     try
     {
-      document.getElementsByClassName("tile-1")[0].style.color = "green";
-    }
-    catch(e)
-    {
-      console.log(e);
-    }
-    try
-    {
-      document.getElementsByClassName("tile-inner")[0].style.color = "yellow";
-    }
-    catch(e)
-    {
-     console.log(e);
-    }
-    try
-    {
-      document.getElementsByClassName("tile-1")[0].getElementsByClassName("tile-inner")[0].style.color = "black";
+      document.getElementsByClassName("tile")[0].style.width = '99px';
     }
     catch(e)
     {
