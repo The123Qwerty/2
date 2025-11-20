@@ -177,7 +177,8 @@ GameManager.prototype.setTileColor = function (id, tileText, colorNum) {
     r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#2f88ff');
   }
   if (tileText == "1") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#7c7f66');
+    r.style.setProperty('--tile1bgcolor1', '#7c7f66');
+    console.log('Code gets here');
   }
 
   if (colorNum < 3)
@@ -250,8 +251,6 @@ GameManager.prototype.move = function (direction) {
         // Only one merger per row traversal?
         if (next && next.text === tile.text && !next.mergedFrom) { 
           var merged = new Tile(positions.next, tile.value, tile.text, Math.min(next.id, tile.id));
-          
-          console.log("next.id: " + next.id + ", tile.id: " + tile.id + "ids: " + self.ids.length);
           
           self.ids[Math.max(next.id, tile.id) - 1] = false;
           merged.mergedFrom = [tile, next];
