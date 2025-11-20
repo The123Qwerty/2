@@ -177,10 +177,31 @@ GameManager.prototype.setTileColor = function (id, tileText, colorNum) {
     r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#2f88ff');
   }
   if (tileText == "1") {
-    console.log('Value of that variable before: ' + getComputedStyle(r).getPropertyValue('--tile1bgcolor1'));
     //r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#7c7f66');
-    document.getElementsByClassName("tile")[0].getElementsByClassName("tile-1")[0].getElementsByClassName("tile-inner")[0].style.color = "green";
-    console.log('Value of that variable after: ' + getComputedStyle(r).getPropertyValue('--tile1bgcolor1'));
+    try
+    {
+      document.getElementsByClassName("tile-1")[0].style.color = "green";
+    }
+    catch(e)
+    {
+      console.log(e);
+    }
+    try
+    {
+      document.getElementsByClassName("tile-inner")[0].style.color = "yellow";
+    }
+    catch(e)
+    {
+     console.log(e);
+    }
+    try
+    {
+      document.getElementsByClassName("tile-1")[0].getElementsByClassName("tile-inner")[0].style.color = "black";
+    }
+    catch(e)
+    {
+      console.log(e);
+    }
   }
 
   if (colorNum == 1)
