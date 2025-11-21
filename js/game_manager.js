@@ -180,7 +180,7 @@ GameManager.prototype.setTileColor = function (id, tileText, colorNum) {
     //r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#7c7f66');
     try
     {
-      document.getElementsByClassName("container")[0].getElementsByClassName("game-container")[0].getElementsByClassName("tile-container")[0][0].style.color = 'blue';
+      document.getElementsByClassName("container")[0].getElementsByClassName("game-container")[0].getElementsByClassName("tile-container")[0][0].getElementsByClassName("tile-inner")[0].style.color = 'blue';
     }
     catch(e)
     {
@@ -188,7 +188,8 @@ GameManager.prototype.setTileColor = function (id, tileText, colorNum) {
     }
     try
     {
-      document.querySelector(".tile-1").style.background = 'green';
+      console.log(document.querySelectorAll(".tile-inner"));
+      document.querySelector(".tile-inner").style.background = 'green';
     }
     catch(e)
     {
