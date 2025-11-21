@@ -5,7 +5,11 @@ html, body {
   background: #d9ffe5;
   color: #290206;
   font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
-  font-size: 18px; 
+  font-size: 18px;
+  --tileColor1: white;
+  --tileColor2: white;
+  --tileColor3: white;
+  --backgroundColor: white;
 }
 
 body {
@@ -519,10 +523,6 @@ hr {
   }
 
 .rarityGlow {
-  --tileColor1: white;
-  --tileColor2: white;
-  --tileColor3: white;
-  --backgroundColor: white;
   background: linear-gradient(to right, var(--backgroundColor), var(--backgroundColor), var(--backgroundColor), var(--backgroundColor), var(--tileColor1), var(--tileColor2), var(--tileColor3), var(--backgroundColor),var(--backgroundColor),var(--backgroundColor),var(--backgroundColor));
   background-size: 400% 400%;
   animation: animatedGradient 3s linear;
