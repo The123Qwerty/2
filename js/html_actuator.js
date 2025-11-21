@@ -92,10 +92,10 @@ HTMLActuator.prototype.setTileColor = function (id, tileText, colorNum, inner) {
     }
   }
   var bgColorsForThisTile = [];
-  for (let i = 0; i < tile.text.length; i++)
+  for (let i = 0; i < tileText.length; i++)
   {
-    bgColorsForThisTile.push(getTileColor(tile.text[i]));
-    if (!/[A-Z]/.test(tile.text[i]))
+    bgColorsForThisTile.push(getTileColor(tileText[i]));
+    if (!/[A-Z]/.test(tileText[i]))
     {
       break;
     }
