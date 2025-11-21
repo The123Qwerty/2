@@ -52,102 +52,60 @@ HTMLActuator.prototype.clearContainer = function (container) {
 };
 
 HTMLActuator.prototype.setTileColor = function (id, tileText, colorNum, inner) {
-  var r = document.querySelector('html');
-  if (tileText == "A") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#725e6b');
-  }
-  if (tileText == "B") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#a1191d');
-  }
-  if (tileText == "C") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#a4b9d2');
-  }
-  if (tileText == "D") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#c6a182');
-  }
-  if (tileText == "E") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#f8f5f3');
-  }
-  if (tileText == "F") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#783205');
-  }
-  if (tileText == "G") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#a6e7a9');
-  }
-  if (tileText == "H") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#229a39');
-  }
-  if (tileText == "I") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#a684da');
-  }
-  if (tileText == "J") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#a09940');
-  }
-  if (tileText == "K") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#5fd65a');
-  }
-  if (tileText == "L") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#1a519c');
-  }
-  if (tileText == "M") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#cc4f3c');
-  }
-  if (tileText == "N") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#2198d5');
-  }
-  if (tileText == "O") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#8a85a7');
-  }
-  if (tileText == "P") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#1c5e4f');
-  }
-  if (tileText == "Q") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#906132');
-  }
-  if (tileText == "R") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#883661');
-  }
-  if (tileText == "S") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#8e69d9');
-  }
-  if (tileText == "T") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#e9ccea');
-  }
-  if (tileText == "U") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#f3e7f1');
-  }
-  if (tileText == "V") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#aa665d');
-  }
-  if (tileText == "W") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#a1d206');
-  }
-  if (tileText == "X") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#a179af');
-  }
-  if (tileText == "Y") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#c05495');
-  }
-  if (tileText == "Z") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#2f88ff');
-  }
-  if (tileText == "1") {
-    //r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#7c7f66');
-    inner.style.background = '#7c7f66';
-    inner.style.color = '#000000';
-  }
-
-  if (colorNum == 1)
+  const tileColors = [
+    ["1",  "7c7f66"],
+    ["A", "#725e6b"],
+    ["B", '#a1191d'],
+    ["C", '#a4b9d2'],
+    ["D", '#c6a182'],
+    ["E", '#f8f5f3'],
+    ["F", '#783205'],
+    ["G", '#a6e7a9'],
+    ["H", '#229a39'],
+    ["I", '#a684da'],
+    ["J", '#a09940'],
+    ["K", '#5fd65a'],
+    ["L", '#1a519c'],
+    ["M", '#cc4f3c'],
+    ["N", '#2198d5'],
+    ["O", '#8a85a7'],
+    ["P", '#1c5e4f'],
+    ["Q", '#906132'],
+    ["R", '#883661'],
+    ["S", '#8e69d9'],
+    ["T", '#e9ccea'],
+    ["U", '#f3e7f1'],
+    ["V", '#aa665d'],
+    ["W", '#a1d206'],
+    ["X", '#a179af'],
+    ["Y", '#c05495'],
+    ["Z", '#2f88ff']
+  ]
+  function getTileColor(text)
   {
-    var color1 = getComputedStyle(r).getPropertyValue('--tile' + id + 'bgcolor1');
-    r.style.setProperty('--tile' + id + 'bgcolor2', color1);
-    r.style.setProperty('--tile' + id + 'bgcolor3', color1);
+    for (let i = 0; i < tileColors.length; i++)
+    {
+      if (tileColors[i][0] == text)
+      {
+        return tileColors[i][1];
+      }
+    }
   }
-  if (colorNum == 2)
+  var bgColorsForThisTile = [];
+  for (let i = 0; i < tile.text.length; i++)
   {
-    var color2 = getComputedStyle(r).getPropertyValue('--tile' + id + 'bgcolor2');
-    r.style.setProperty('--tile' + id + 'bgcolor3', color2);
+    bgColorsForThisTile.push(getTileColor(tile.text[i]));
+    if (!/[A-Z]/.test(tile.text[i]))
+    {
+      break;
+    }
   }
+  var lastColor = bgColorsForThisTile[bgColorsForThisTile.length - 1];
+  while (bgColorsForThisTile.length < 3)
+  {
+    bgColorsForThisTile.push(lastColor);
+  }
+  inner.style.background = 'linear-gradient(to right, ' + bgColorsForThisTile[0] + ', ' + bgColorsForThisTile[1] + ', ' + bgColorsForThisTile[2] + ')';
 }
 
 HTMLActuator.prototype.addTile = function (tile) {
@@ -167,10 +125,8 @@ HTMLActuator.prototype.addTile = function (tile) {
 
   inner.classList.add("tile-inner");
   inner.textContent = tile.text;
-  for (let i = 0; i < tile.text.length; i++)
-    {
-      this.setTileColor(tile.id, tile.text[i], i + 1, inner);
-    }
+      
+  this.setTileColor(tile.id, tile.text, inner);
 
   if (tile.previousPosition) {
     // Make sure that the tile gets rendered in the previous position first
