@@ -2,14 +2,14 @@
 html, body {
   margin: 0;
   padding: 0;
-  background: #d9ffe5;
+  --backgroundColor: #d9ffe5;
+  background: var(--backgroundColor);
   color: #290206;
   font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
   font-size: 18px;
   --tileColor1: white;
   --tileColor2: white;
   --tileColor3: white;
-  --backgroundColor: white;
 }
 
 body {
