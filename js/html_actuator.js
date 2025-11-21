@@ -51,7 +51,7 @@ HTMLActuator.prototype.clearContainer = function (container) {
   }
 };
 
-HTMLActuator.prototype.setTileColor = function (id, tileText, colorNum, inner) {
+HTMLActuator.prototype.setTileColor = function (id, tileText, inner) {
   const tileColors = [
     ["1",  "7c7f66"],
     ["A", "#725e6b"],
