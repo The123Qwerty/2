@@ -52,6 +52,7 @@ HTMLActuator.prototype.clearContainer = function (container) {
 };
 
 HTMLActuator.prototype.setTileColor = function (id, tileText, inner) {
+  const commonTiles = ["1", "A", "B", "C", "D", "E"];
   const tileColors = [
     ["1", "#7c7f66"],
     ["A", "#725e6b"],
@@ -105,9 +106,24 @@ HTMLActuator.prototype.setTileColor = function (id, tileText, inner) {
   {
     bgColorsForThisTile.push(lastColor);
   }
+  
+  if (!(commonTiles.includes(tileText)))
+  {
+      triggerRarityGlow(tileText, bgColorsForThisTile);
+  }
+  
   inner.style.background = 'linear-gradient(to right, ' + bgColorsForThisTile[0] + ', ' + bgColorsForThisTile[1] + ', ' + bgColorsForThisTile[2] + ')';
-  console.log("This worked: linear-gradient(to right, #fd3427, #019fd7). This didn't work: " + 'linear-gradient(to right, ' + bgColorsForThisTile[0] + ', ' + bgColorsForThisTile[1] + ', ' + bgColorsForThisTile[2] + ')');
-  //inner.style.background = 'linear-gradient(to right, #fd3427, #019fd7)';
+}
+
+HTMLActuator.prototype.triggerRarityGlow = function (tileText, bgColors) {
+  var r = document.querySelector('html');
+  r.classList.toggle("rarityGlow");
+  var defaultBackground = getComputedStyle(r).getPropertyValue('background');
+  var animationClass = document.getElementsByClassName("rarityGlow")[0];
+  r.style.setProperty('--backgroundColor', defaultBackground);
+  r.style.setProperty('--tileColor1', bgColors[0]);
+  r.style.setProperty('--tileColor2', bgColors[1]);
+  r.style.setProperty('--tileColor3', bgColors[2]);
 }
 
 HTMLActuator.prototype.addTile = function (tile) {
