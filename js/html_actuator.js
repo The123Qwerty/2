@@ -4,6 +4,7 @@ function HTMLActuator() {
   this.bestContainer    = document.querySelector(".best-container");
   this.messageContainer = document.querySelector(".game-message");
   this.sharingContainer = document.querySelector(".score-sharing");
+  this.animationRunning = false;
 
   this.score = 0;
 }
@@ -124,6 +125,12 @@ HTMLActuator.prototype.triggerRarityGlow = function (tileText, bgColors) {
   r.style.setProperty('--tileColor1', bgColors[0]);
   r.style.setProperty('--tileColor2', bgColors[1]);
   r.style.setProperty('--tileColor3', bgColors[2]);
+  this.animationRunning = true;
+  function resume()
+  {
+    this.animationRunning = false;
+  }
+  setTimeout(resume, 4000);
 }
 
 HTMLActuator.prototype.addTile = function (tile) {
