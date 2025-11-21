@@ -118,9 +118,7 @@ HTMLActuator.prototype.setTileColor = function (id, tileText, inner) {
 HTMLActuator.prototype.triggerRarityGlow = function (tileText, bgColors) {
   var r = document.querySelector('html');
   r.classList.toggle("rarityGlow");
-  var defaultBackground = getComputedStyle(r).getPropertyValue('background');
   var animationClass = document.getElementsByClassName("rarityGlow")[0];
-  r.style.setProperty('--backgroundColor', defaultBackground);
   r.style.setProperty('--tileColor1', bgColors[0]);
   r.style.setProperty('--tileColor2', bgColors[1]);
   r.style.setProperty('--tileColor3', bgColors[2]);
