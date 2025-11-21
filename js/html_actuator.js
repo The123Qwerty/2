@@ -51,6 +51,104 @@ HTMLActuator.prototype.clearContainer = function (container) {
   }
 };
 
+HTMLActuator.prototype.setTileColor = function (id, tileText, colorNum, inner) {
+  var r = document.querySelector('html');
+  if (tileText == "A") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#725e6b');
+  }
+  if (tileText == "B") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#a1191d');
+  }
+  if (tileText == "C") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#a4b9d2');
+  }
+  if (tileText == "D") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#c6a182');
+  }
+  if (tileText == "E") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#f8f5f3');
+  }
+  if (tileText == "F") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#783205');
+  }
+  if (tileText == "G") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#a6e7a9');
+  }
+  if (tileText == "H") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#229a39');
+  }
+  if (tileText == "I") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#a684da');
+  }
+  if (tileText == "J") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#a09940');
+  }
+  if (tileText == "K") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#5fd65a');
+  }
+  if (tileText == "L") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#1a519c');
+  }
+  if (tileText == "M") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#cc4f3c');
+  }
+  if (tileText == "N") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#2198d5');
+  }
+  if (tileText == "O") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#8a85a7');
+  }
+  if (tileText == "P") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#1c5e4f');
+  }
+  if (tileText == "Q") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#906132');
+  }
+  if (tileText == "R") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#883661');
+  }
+  if (tileText == "S") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#8e69d9');
+  }
+  if (tileText == "T") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#e9ccea');
+  }
+  if (tileText == "U") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#f3e7f1');
+  }
+  if (tileText == "V") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#aa665d');
+  }
+  if (tileText == "W") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#a1d206');
+  }
+  if (tileText == "X") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#a179af');
+  }
+  if (tileText == "Y") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#c05495');
+  }
+  if (tileText == "Z") {
+    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#2f88ff');
+  }
+  if (tileText == "1") {
+    //r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#7c7f66');
+    inner.background = '#7c7f66';
+  }
+
+  if (colorNum == 1)
+  {
+    var color1 = getComputedStyle(r).getPropertyValue('--tile' + id + 'bgcolor1');
+    r.style.setProperty('--tile' + id + 'bgcolor2', color1);
+    r.style.setProperty('--tile' + id + 'bgcolor3', color1);
+  }
+  if (colorNum == 2)
+  {
+    var color2 = getComputedStyle(r).getPropertyValue('--tile' + id + 'bgcolor2');
+    r.style.setProperty('--tile' + id + 'bgcolor3', color2);
+  }
+}
+
 HTMLActuator.prototype.addTile = function (tile) {
   var self = this;
 
@@ -68,18 +166,10 @@ HTMLActuator.prototype.addTile = function (tile) {
 
   inner.classList.add("tile-inner");
   inner.textContent = tile.text;
-  if (tile.value === 370) inner.textContent = 37;
-  if (tile.value === 371) inner.textContent = 37;
-  if (tile.value === 372) inner.textContent = 37;
-  if (tile.value === 373) inner.textContent = 37;
-  if (tile.value === 374) inner.textContent = 37;
-  if (tile.value === 375) inner.textContent = 37;
-  if (tile.value === 376) inner.textContent = 37;
-  if (tile.value === 377) inner.textContent = 37;
-  if (tile.value === 378) inner.textContent = 37;
-  if (tile.value === 379) inner.textContent = 37;
-  if (tile.value === -34) inner.textContent = 34;
-  if (tile.value === -63) inner.textContent = 63;
+  for (let i = 0; i < tile.text.length; i++)
+    {
+      this.setTileColor(tile.id, tile.text[i], i + 1, inner);
+    }
 
   if (tile.previousPosition) {
     // Make sure that the tile gets rendered in the previous position first
