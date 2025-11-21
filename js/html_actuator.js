@@ -133,7 +133,8 @@ HTMLActuator.prototype.setTileColor = function (id, tileText, colorNum, inner) {
   }
   if (tileText == "1") {
     //r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#7c7f66');
-    inner.background = '#7c7f66';
+    inner.style.background = '#7c7f66';
+    inner.style.color = #000000;
   }
 
   if (colorNum == 1)
