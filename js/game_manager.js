@@ -60,6 +60,7 @@ GameManager.prototype.addStartTiles = function () {
 // Adds a tile in a random position
 GameManager.prototype.addRandomTile = function () {
   const alphabet = [" ", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+  const commonTiles = ["1", "A", "B", "C", "D", "E"];
   if (this.grid.cellsAvailable()) {
     var value = Math.random() < 0.999999999 ? Math.random() < 0.999999998 ? Math.random() < 0.999999995 ? Math.random() < 0.99999999 ? Math.random() < 0.99999998 ? Math.random() < 0.999999975 ? Math.random() < 0.999999971428571 ? Math.random() < 0.9999999666 ? Math.random() < 0.99999996 ? Math.random() < 0.99999995 ? Math.random() < 0.9999999333 ? Math.random() < 0.9999999 ? Math.random() < 0.9999998 ? Math.random() < 0.9999996 ? Math.random() < 0.999999375 ? Math.random() < 0.999999 ? Math.random() < 0.9999984 ? Math.random() < 0.9999975 ? Math.random() < 0.999996 ? Math.random() < 0.99999444 ? Math.random() < 0.999991667 ? Math.random() < 0.99998666 ? Math.random() < 0.99998 ? Math.random() < 0.9999666 ? Math.random() < 0.9999333 ? Math.random() < 0.9999 ? 1: 99991: 99992: 99993: 99994: 99995: 99996: 99997: 99998: 99999: 999910: 999911: 999912: 999913: 999914: 999915: 999916: 999917: 999918: 999919: 999920: 999921: 999922: 999923: 999924: 999925: 999926;
     var text = value.toString();
@@ -83,11 +84,6 @@ GameManager.prototype.addRandomTile = function () {
     id++;
     this.ids[id] = true;
     id++;
-
-    for (let i = 0; i < text.length; i++)
-    {
-      this.setTileColor(id, text[i], i + 1);
-    }
     
     var tile = new Tile(this.grid.randomAvailableCell(), value, text, id);
     
@@ -95,112 +91,6 @@ GameManager.prototype.addRandomTile = function () {
     this.score += 1;
   }
 };
-
-GameManager.prototype.setTileColor = function (id, tileText, colorNum) {
-  var r = document.querySelector('html');
-  if (tileText == "A") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#725e6b');
-  }
-  if (tileText == "B") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#a1191d');
-  }
-  if (tileText == "C") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#a4b9d2');
-  }
-  if (tileText == "D") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#c6a182');
-  }
-  if (tileText == "E") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#f8f5f3');
-  }
-  if (tileText == "F") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#783205');
-  }
-  if (tileText == "G") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#a6e7a9');
-  }
-  if (tileText == "H") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#229a39');
-  }
-  if (tileText == "I") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#a684da');
-  }
-  if (tileText == "J") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#a09940');
-  }
-  if (tileText == "K") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#5fd65a');
-  }
-  if (tileText == "L") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#1a519c');
-  }
-  if (tileText == "M") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#cc4f3c');
-  }
-  if (tileText == "N") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#2198d5');
-  }
-  if (tileText == "O") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#8a85a7');
-  }
-  if (tileText == "P") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#1c5e4f');
-  }
-  if (tileText == "Q") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#906132');
-  }
-  if (tileText == "R") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#883661');
-  }
-  if (tileText == "S") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#8e69d9');
-  }
-  if (tileText == "T") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#e9ccea');
-  }
-  if (tileText == "U") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#f3e7f1');
-  }
-  if (tileText == "V") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#aa665d');
-  }
-  if (tileText == "W") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#a1d206');
-  }
-  if (tileText == "X") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#a179af');
-  }
-  if (tileText == "Y") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#c05495');
-  }
-  if (tileText == "Z") {
-    r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#2f88ff');
-  }
-  if (tileText == "1") {
-    //r.style.setProperty('--tile' + id + 'bgcolor' + colorNum, '#7c7f66');
-    try
-    {
-      console.log(document.querySelector(".tile.tile-1 .tile-inner"));
-      document.querySelector(".tile.tile-1 .tile-inner").style.background = 'green';
-    }
-    catch(e)
-    {
-      console.log(e);
-    }
-  }
-
-  if (colorNum == 1)
-  {
-    var color1 = getComputedStyle(r).getPropertyValue('--tile' + id + 'bgcolor1');
-    r.style.setProperty('--tile' + id + 'bgcolor2', color1);
-    r.style.setProperty('--tile' + id + 'bgcolor3', color1);
-  }
-  if (colorNum == 2)
-  {
-    var color2 = getComputedStyle(r).getPropertyValue('--tile' + id + 'bgcolor2');
-    r.style.setProperty('--tile' + id + 'bgcolor3', color2);
-  }
-}
 
 // Sends the updated grid to the actuator
 GameManager.prototype.actuate = function () {
