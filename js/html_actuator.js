@@ -105,7 +105,9 @@ HTMLActuator.prototype.setTileColor = function (id, tileText, inner) {
   {
     bgColorsForThisTile.push(lastColor);
   }
-  inner.style.background = 'linear-gradient(to right, ' + bgColorsForThisTile[0] + ', ' + bgColorsForThisTile[1] + ', ' + bgColorsForThisTile[2] + ')';
+  //inner.style.background = 'linear-gradient(to right, ' + bgColorsForThisTile[0] + ', ' + bgColorsForThisTile[1] + ', ' + bgColorsForThisTile[2] + ')';
+  inner.style.color = '#000000';
+  inner.style.background = 'linear-gradient(to right, #fd3427, #019fd7)';
 }
 
 HTMLActuator.prototype.addTile = function (tile) {
