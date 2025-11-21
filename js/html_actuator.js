@@ -109,7 +109,7 @@ HTMLActuator.prototype.setTileColor = function (id, tileText, inner) {
   
   if (!(commonTiles.includes(tileText)))
   {
-      triggerRarityGlow(tileText, bgColorsForThisTile);
+      this.triggerRarityGlow(tileText, bgColorsForThisTile);
   }
   
   inner.style.background = 'linear-gradient(to right, ' + bgColorsForThisTile[0] + ', ' + bgColorsForThisTile[1] + ', ' + bgColorsForThisTile[2] + ')';
