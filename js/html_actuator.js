@@ -6,7 +6,7 @@ function HTMLActuator() {
   this.sharingContainer = document.querySelector(".score-sharing");
   this.animationRunning = false;
   this.tileData = [
-    ["2", 10000000, '#2170c4'],
+    ["3", 10000000, '#2170c4'],
     ["Z", 1000000000, '#2f88ff'],
     ["Y", 500000000, '#c05495'],
     ["X", 200000000, '#18bf95'],
@@ -33,7 +33,7 @@ function HTMLActuator() {
     ["C", 30000, '#a4b9d2'],
     ["B", 15000, '#76191c'],
     ["A", 10000, "#725e6b"],
-    ["1.99", 1000000, '#b696af'],
+    ["2.99", 2000000, '#b696af'],
     ["1.75", 80000, '#7F6675'],
     ["1.5", 40000, '#705982'],
     ["1.4", 17500, '#825f59'],
