@@ -52,7 +52,7 @@ HTMLActuator.prototype.clearContainer = function (container) {
   }
 };
 
-HTMLActuator.prototype.setTileColor = function (id, tileText, inner, newTile) {
+HTMLActuator.prototype.setTileColor = function (tileText, inner, newTile) {
   const commonTiles = ["1", "A", "B", "C", "D", "E"];
   const tileColors = [
     ["1", "#7c7f66"],
@@ -172,7 +172,7 @@ HTMLActuator.prototype.addTile = function (tile) {
     this.applyClasses(wrapper, classes);
   }
 
-  this.setTileColor(tile.id, tile.text, inner, classes.includes("tile-new"));
+  this.setTileColor(tile.text, inner, classes.includes("tile-new"));
 
   // Add the inner part of the tile to the wrapper
   wrapper.appendChild(inner);
