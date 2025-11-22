@@ -69,6 +69,7 @@ function HTMLActuator() {
     ["C", 50],
     ["B", 20],
     ["A", 10],
+    ["", 1]
   ];
 
   this.score = 0;
