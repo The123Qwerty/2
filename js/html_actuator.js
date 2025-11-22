@@ -119,12 +119,15 @@ HTMLActuator.prototype.clearContainer = function (container) {
 
 HTMLActuator.prototype.setTileColor = function (tileText, inner, newTile) {
   var bgColorsForThisTile = [];
-  for (let i = 0; i < tileText.length; i++)
-  {
-    bgColorsForThisTile.push(this.getTileColor(tileText[i]));
-    if (!/[A-Z]/.test(tileText[i]))
+  if (!/[A-Z]/.test(tileText[0]))
     {
-      break;
+      bgColorsForThisTile.push(this.getTileColor(tileText));
+    }
+  else
+  {
+    for (let i = 0; i < tileText.length; i++)
+    {
+      bgColorsForThisTile.push(this.getTileColor(tileText[i]));
     }
   }
   var lastColor = bgColorsForThisTile[bgColorsForThisTile.length - 1];
