@@ -52,7 +52,7 @@ HTMLActuator.prototype.clearContainer = function (container) {
   }
 };
 
-HTMLActuator.prototype.setTileColor = function (id, tileText, inner) {
+HTMLActuator.prototype.setTileColor = function (id, tileText, inner, newTile) {
   const commonTiles = ["1", "A", "B", "C", "D", "E"];
   const tileColors = [
     ["1", "#7c7f66"],
@@ -108,7 +108,7 @@ HTMLActuator.prototype.setTileColor = function (id, tileText, inner) {
     bgColorsForThisTile.push(lastColor);
   }
   
-  if (!(commonTiles.includes(tileText)))
+  if (!(commonTiles.includes(tileText)) && newTile)
   {
       this.triggerRarityGlow(tileText, bgColorsForThisTile);
   }
@@ -126,11 +126,7 @@ HTMLActuator.prototype.triggerRarityGlow = function (tileText, bgColors) {
   r.style.setProperty('--tileColor2', bgColors[1]);
   r.style.setProperty('--tileColor3', bgColors[2]);
   this.animationRunning = true;
-  function resume()
-  {
-    this.animationRunning = false;
-  }
-  setTimeout(resume, 4000);
+  setTimeout(() => {this.animationRunning = false;}, 4000);
 }
 
 HTMLActuator.prototype.addTile = function (tile) {
@@ -150,8 +146,6 @@ HTMLActuator.prototype.addTile = function (tile) {
 
   inner.classList.add("tile-inner");
   inner.textContent = tile.text;
-      
-  this.setTileColor(tile.id, tile.text, inner);
 
   if (tile.previousPosition) {
     // Make sure that the tile gets rendered in the previous position first
@@ -171,6 +165,8 @@ HTMLActuator.prototype.addTile = function (tile) {
     classes.push("tile-new");
     this.applyClasses(wrapper, classes);
   }
+
+  this.setTileColor(tile.id, tile.text, inner, classes.includes("tile-new"));
 
   // Add the inner part of the tile to the wrapper
   wrapper.appendChild(inner);
