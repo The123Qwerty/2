@@ -5,7 +5,8 @@ function HTMLActuator() {
   this.messageContainer = document.querySelector(".game-message");
   this.sharingContainer = document.querySelector(".score-sharing");
   this.animationRunning = false;
-  this.tileData = [  
+  this.tileData = [
+    ["2", 10000000, '#2170c4'],
     ["Z", 1000000000, '#2f88ff'],
     ["Y", 500000000, '#c05495'],
     ["X", 200000000, '#a179af'],
@@ -32,6 +33,13 @@ function HTMLActuator() {
     ["C", 30000, '#a4b9d2'],
     ["B", 15000, '#a1191d'],
     ["A", 10000, "#725e6b"],
+    ["1.99", 1000000, '#596b82'],
+    ["1.75", 80000, '#596b82'],
+    ["1.5", 40000, '#596b82'],
+    ["1.4", 17500, '#596b82'],
+    ["1.3", 9000, '#596b82'],
+    ["1.2", 3000, '#596b82'],
+    ["1.1", 950, '#596b82'],
     ["1", 1, "#7c7f66"]
   ];
   this.secondaryTileRarity = [   
@@ -146,27 +154,41 @@ HTMLActuator.prototype.getTileColor = function(text)
 
 HTMLActuator.prototype.getTotalRarity = function (fullText) {
   var rarity = 1;
-  for (let j = 0; j < fullText.length; j++)
+  if (!/[A-Z]/.test(fullText[0]))
   {
-    if (j == 0)
-    {
-      for (let i = 0; i < this.tileData.length; i++)
+    for (let i = 0; i < this.tileData.length; i++)
       {
-        if (this.tileData[i][0] == fullText[j])
+        if (this.tileData[i][0] == fullText)
         {
           rarity *= this.tileData[i][1];
           break;
         }
       }
-    }
-    else
+  }
+  else
+  {
+    for (let j = 0; j < fullText.length; j++)
     {
-      for (let i = 0; i < this.secondaryTileRarity.length; i++)
+      if (j == 0)
       {
-        if (this.secondaryTileRarity[i][0] == fullText[j])
+        for (let i = 0; i < this.tileData.length; i++)
         {
-          rarity *= this.secondaryTileRarity[i][1];
-          break;
+          if (this.tileData[i][0] == fullText[j])
+          {
+            rarity *= this.tileData[i][1];
+            break;
+          }
+        }
+      }
+      else
+      {
+        for (let i = 0; i < this.secondaryTileRarity.length; i++)
+        {
+          if (this.secondaryTileRarity[i][0] == fullText[j])
+          {
+            rarity *= this.secondaryTileRarity[i][1];
+            break;
+          }
         }
       }
     }
