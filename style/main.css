@@ -4,7 +4,7 @@ html, body {
   padding: 0;
   --backgroundColor: #4d7480;
   background: var(--backgroundColor);
-  color: #290206;
+  color: #3f0309;
   font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
   font-size: 18px;
   --tileColor1: white;
@@ -61,7 +61,7 @@ h1.title {
 .score-container, .best-container {
   position: relative;
   display: inline-block;
-  background: #bbada0;
+  background: #857e77;
   padding: 15px 25px;
   font-size: 25px;
   height: 25px;
@@ -109,7 +109,7 @@ p {
   line-height: 1.65; }
 
 a {
-  color: #776e65;
+  color: #9b8f83;
   font-weight: bold;
   text-decoration: underline;
   cursor: pointer; }
@@ -157,7 +157,7 @@ hr {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  background: #bbada0;
+  background: #857e77;
   border-radius: 6px;
   width: 492px;
   height: 492px;
@@ -228,7 +228,7 @@ hr {
   margin-right: 6.7px;
   float: left;
   border-radius: 3px;
-  background: rgba(238, 228, 218, 0.35); }
+  background: rgba(213, 201, 188, 0.35); }
   .grid-cell:last-child {
     margin-right: 0; }
 
