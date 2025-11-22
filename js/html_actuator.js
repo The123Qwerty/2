@@ -275,6 +275,14 @@ HTMLActuator.prototype.addTile = function (tile) {
   }
 
   this.setTileColor(tile.text, inner, classes.includes("tile-new"));
+  if (tile.text.length > 3)
+  {
+    inner.style.fontSize = "22px";
+  }
+  if (tile.text.length > 2 && !(tile.text.includes(".")))
+  {
+    inner.style.fontSize = "25px";
+  }
 
   // Add the inner part of the tile to the wrapper
   wrapper.appendChild(inner);
