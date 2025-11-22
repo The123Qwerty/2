@@ -128,6 +128,9 @@ HTMLActuator.prototype.triggerRarityGlow = function (tileText, bgColors) {
   q.classList.remove("rarityGlow");
   void q.offsetWidth;
   q.classList.add("rarityGlow");
+  q.style.setProperty('--tileColor1', bgColors[0]);
+  q.style.setProperty('--tileColor2', bgColors[1]);
+  q.style.setProperty('--tileColor3', bgColors[2]);
   this.animationRunning = true;
   setTimeout(() => {this.animationRunning = false;}, 4000);
 }
