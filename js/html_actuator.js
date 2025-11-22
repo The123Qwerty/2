@@ -34,6 +34,34 @@ function HTMLActuator() {
     ["Z", 1000000000, '#2f88ff'],
     ["1", 1, "#7c7f66"]
   ];
+  this.secondaryTileRarity = [
+    ["A", 10],
+    ["B", 20],
+    ["C", 50],
+    ["D", 100],
+    ["E", 160],
+    ["F", 250],
+    ["G", 300],
+    ["H", 400],
+    ["I", 500],
+    ["J", 600],
+    ["K", 800],
+    ["L", 1000],
+    ["M", 1500],
+    ["N", 2000],
+    ["O", 2500],
+    ["P", 3000],
+    ["Q", 4000],
+    ["R", 5000],
+    ["S", 7500],
+    ["T", 10000],
+    ["U", 20000],
+    ["V", 40000],
+    ["W", 60000],
+    ["X", 80000],
+    ["Y", 100000],
+    ["Z", 1000000]
+  ];
 
   this.score = 0;
 }
@@ -118,15 +146,28 @@ HTMLActuator.prototype.getTileColor = function(text)
 
 HTMLActuator.prototype.getTotalRarity = function (fullText) {
   var rarity = 1;
-  var i = 0;
   for (let j = 0; j < fullText.length; j++)
   {
-    for (; i < this.tileData.length; i++)
+    if (j == 0)
     {
-      if (this.tileData[i][0] == fullText[j])
+      for (let i = 0; i < this.tileData.length; i++)
       {
-        rarity *= this.tileData[i][1];
-        break;
+        if (this.tileData[i][0] == fullText[j])
+        {
+          rarity *= this.tileData[i][1];
+          break;
+        }
+      }
+    }
+    else
+    {
+      for (let i = 0; i < this.secondaryTileRarity.length; i++)
+      {
+        if (this.secondaryTileRarity[i][0] == fullText[j])
+        {
+          rarity *= this.secondaryTileRarity[i][1];
+          break;
+        }
       }
     }
   }
