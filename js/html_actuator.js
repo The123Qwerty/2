@@ -5,6 +5,35 @@ function HTMLActuator() {
   this.messageContainer = document.querySelector(".game-message");
   this.sharingContainer = document.querySelector(".score-sharing");
   this.animationRunning = false;
+  this.tileData = [
+    ["A", 10000, "#725e6b"],
+    ["B", 15000, '#a1191d'],
+    ["C", 30000, '#a4b9d2'],
+    ["D", 50000, '#c6a182'],
+    ["E", 75000, '#f8f5f3'],
+    ["F", 120000, '#783205'],
+    ["G", 180000, '#a6e7a9'],
+    ["H", 250000, '#229a39'],
+    ["I", 400000, '#a684da'],
+    ["J", 600000, '#a09940'],
+    ["K", 1000000, '#5fd65a'],
+    ["L", 1600000, '#1a519c'],
+    ["M", 2500000, '#cc4f3c'],
+    ["N", 5000000, '#2198d5'],
+    ["O", 10000000, '#8a85a7'],
+    ["P", 15000000, '#1c5e4f'],
+    ["Q", 20000000, '#906132'],
+    ["R", 25000000, '#883661'],
+    ["S", 30000000, '#8e69d9'],
+    ["T", 35000000, '#e9ccea'],
+    ["U", 40000000, '#f3e7f1'],
+    ["V", 50000000, '#aa665d'],
+    ["W", 100000000, '#a1d206'],
+    ["X", 200000000, '#a179af'],
+    ["Y", 500000000, '#c05495'],
+    ["Z", 1000000000, '#2f88ff'],
+    ["1", 1, "#7c7f66"]
+  ];
 
   this.score = 0;
 }
@@ -53,46 +82,17 @@ HTMLActuator.prototype.clearContainer = function (container) {
 };
 
 HTMLActuator.prototype.setTileColor = function (tileText, inner, newTile) {
-  const commonTiles = ["1", "A", "B", "C", "D", "E"];
-  const tileColors = [
-    ["1", "#7c7f66"],
-    ["A", "#725e6b"],
-    ["B", '#a1191d'],
-    ["C", '#a4b9d2'],
-    ["D", '#c6a182'],
-    ["E", '#f8f5f3'],
-    ["F", '#783205'],
-    ["G", '#a6e7a9'],
-    ["H", '#229a39'],
-    ["I", '#a684da'],
-    ["J", '#a09940'],
-    ["K", '#5fd65a'],
-    ["L", '#1a519c'],
-    ["M", '#cc4f3c'],
-    ["N", '#2198d5'],
-    ["O", '#8a85a7'],
-    ["P", '#1c5e4f'],
-    ["Q", '#906132'],
-    ["R", '#883661'],
-    ["S", '#8e69d9'],
-    ["T", '#e9ccea'],
-    ["U", '#f3e7f1'],
-    ["V", '#aa665d'],
-    ["W", '#a1d206'],
-    ["X", '#a179af'],
-    ["Y", '#c05495'],
-    ["Z", '#2f88ff']
-  ]
   function getTileColor(text)
   {
-    for (let i = 0; i < tileColors.length; i++)
+    for (let i = 0; i < this.tileData.length; i++)
     {
-      if (tileColors[i][0] == text)
+      if (this.tileData[i][0] == text)
       {
-        return tileColors[i][1];
+        return this.tileData[i][2];
       }
     }
   }
+  
   var bgColorsForThisTile = [];
   for (let i = 0; i < tileText.length; i++)
   {
@@ -108,12 +108,29 @@ HTMLActuator.prototype.setTileColor = function (tileText, inner, newTile) {
     bgColorsForThisTile.push(lastColor);
   }
   
-  if (!(commonTiles.includes(tileText)) && newTile)
+  if (this.getTotalRarity(tileText) >= 1000000 && newTile)
   {
       this.triggerRarityGlow(tileText, bgColorsForThisTile);
   }
   
   inner.style.background = 'linear-gradient(to right, ' + bgColorsForThisTile[0] + ', ' + bgColorsForThisTile[1] + ', ' + bgColorsForThisTile[2] + ')';
+}
+
+HTMLActuator.prototype.getTotalRarity = function (fullText) {
+  var rarity = 1;
+  var i = 0;
+  for (let j = 0; j < fullText.length; j++)
+  {
+    for (; i < this.tileData.length; i++)
+    {
+      if (this.tileData[i][0] == fullText[j])
+      {
+        rarity *= this.tileData[i][1];
+        break;
+      }
+    }
+  }
+  return rarity;
 }
 
 HTMLActuator.prototype.triggerRarityGlow = function (tileText, bgColors) {
