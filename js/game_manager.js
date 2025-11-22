@@ -93,7 +93,7 @@ GameManager.prototype.addRandomTile = function () {
   }
 };
 
-GameManager.protoype.randomTile = function (list) {
+GameManager.prototype.randomTile = function (list) {
     for (let i = 0; i < list.length; i++)
     {
       if (!Math.random() < 1 - (1 / list[i][1]))
