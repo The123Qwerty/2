@@ -132,6 +132,10 @@ HTMLActuator.prototype.setTileColor = function (tileText, inner, newTile) {
     for (let i = 0; i < tileText.length; i++)
     {
       bgColorsForThisTile.push(this.getTileColor(tileText[i]));
+      if (this.getTileColor(tileText[i], true) != "")
+      {
+        inner.style.color = this.getTileColor(tileText[i], true);
+      }
     }
   }
   var lastColor = bgColorsForThisTile[bgColorsForThisTile.length - 1];
