@@ -2,7 +2,7 @@ The MIT License (MIT)
 
 2048 Copyright (c) 2014 Gabriele Cirulli
 10 Copyright (c) 2020 Fluff 5
-2 Copyright (c) 2025 The123Qwerty
+3 Copyright (c) 2025 The123Qwerty
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
