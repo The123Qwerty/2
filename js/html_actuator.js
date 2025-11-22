@@ -12,7 +12,7 @@ function HTMLActuator() {
     ["X", 200000000, '#a179af'],
     ["W", 100000000, '#a1d206'],
     ["V", 50000000, '#aa665d'],
-    ["U", 40000000, '#f3e7f1'],
+    ["U", 40000000, '#f3e7f1', '#171717'],
     ["T", 35000000, '#e9ccea'],
     ["S", 30000000, '#8e69d9'],
     ["R", 25000000, '#883661'],
@@ -122,6 +122,10 @@ HTMLActuator.prototype.setTileColor = function (tileText, inner, newTile) {
   if (!/[A-Z]/.test(tileText[0]))
     {
       bgColorsForThisTile.push(this.getTileColor(tileText));
+      if (this.getTileColor(tileText, true) != "")
+      {
+        inner.style.color = this.getTileColor(tileText, true);
+      }
     }
   else
   {
@@ -144,12 +148,23 @@ HTMLActuator.prototype.setTileColor = function (tileText, inner, newTile) {
   inner.style.background = 'linear-gradient(to right, ' + bgColorsForThisTile[0] + ', ' + bgColorsForThisTile[1] + ', ' + bgColorsForThisTile[2] + ')';
 }
 
-HTMLActuator.prototype.getTileColor = function(text)
+HTMLActuator.prototype.getTileColor = function(text, font = false)
   {
     for (let i = 0; i < this.tileData.length; i++)
     {
       if (this.tileData[i][0] == text)
       {
+        if (font)
+        {
+          if (this.tileData[i].length < 4)
+          {
+            return "";
+          }
+          else
+          {
+            return this.tileData[i][3];
+          }
+        }
         return this.tileData[i][2];
       }
     }
