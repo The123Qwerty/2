@@ -74,6 +74,17 @@ GameManager.prototype.addRandomTile = function () {
         }
     }
 
+    function randomTile()
+    {
+      for (let i = 0; i < this.actuator.tileData.length; i++)
+      {
+        if (!Math.random() < 1 - (1 / this.actuator.tileData[i][1]))
+        {
+          return this.actuator.tileData[i][0];
+        }
+      }
+    }
+
     //Assign the first available id and mark it as taken
     var id = -1;
     for (let i = 0; this.ids[i]; i++)
