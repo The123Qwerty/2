@@ -66,7 +66,7 @@ GameManager.prototype.addRandomTile = function () {
     if (/[A-Z]/.test(text[0])) {
       for (let i = 0; i < 2; i++) {
           //var tempText = Math.random() < 0.999999 ? Math.random() < 0.99999 ? Math.random() < 0.9999875 ? Math.random() < 0.99998333 ? Math.random() < 0.999975 ? Math.random() < 0.99995 ? Math.random() < 0.9999 ? Math.random() < 0.995 ? Math.random() < 0.9998 ? Math.random() < 0.99975 ? Math.random() < 0.99966666667 ? Math.random() < 0.9996 ? Math.random() < 0.9995 ? Math.random() < 0.9993333333 ? Math.random() < 0.999 ? Math.random() < 0.99875 ? Math.random() < 0.998333333 ? Math.random() < 0.998 ? Math.random() < 0.9975 ? Math.random() < 0.9966666667 ? Math.random() < 0.996 ? Math.random() < 0.99375 ? Math.random() < 0.99 ? Math.random() < 0.98 ? Math.random() < 0.95 ? Math.random() < 0.9 ? "": "A": "B": "C": "D": "E": "F": "G": "H": "I": "J": "K": "L": "M": "N": "O": "P": "Q": "R": "S": "T": "U": "V": "W": "X": "Y": "Z";
-          var tempText = this.randomTile(this.actuator.secondaryTileRarities);
+          var tempText = this.randomTile(this.actuator.secondaryTileRarity);
           if (tempText == "") {break;}
           text += tempText;
         }
