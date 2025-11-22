@@ -101,7 +101,7 @@ GameManager.protoype.randomTile = function (list) {
         return list[i][0];
       }
     }
-  }
+};
 
 // Sends the updated grid to the actuator
 GameManager.prototype.actuate = function () {
