@@ -82,21 +82,10 @@ HTMLActuator.prototype.clearContainer = function (container) {
 };
 
 HTMLActuator.prototype.setTileColor = function (tileText, inner, newTile) {
-  function getTileColor(text)
-  {
-    for (let i = 0; i < this.tileData.length; i++)
-    {
-      if (this.tileData[i][0] == text)
-      {
-        return this.tileData[i][2];
-      }
-    }
-  }
-  
   var bgColorsForThisTile = [];
   for (let i = 0; i < tileText.length; i++)
   {
-    bgColorsForThisTile.push(getTileColor(tileText[i]));
+    bgColorsForThisTile.push(this.getTileColor(tileText[i]));
     if (!/[A-Z]/.test(tileText[i]))
     {
       break;
@@ -115,6 +104,17 @@ HTMLActuator.prototype.setTileColor = function (tileText, inner, newTile) {
   
   inner.style.background = 'linear-gradient(to right, ' + bgColorsForThisTile[0] + ', ' + bgColorsForThisTile[1] + ', ' + bgColorsForThisTile[2] + ')';
 }
+
+HTMLActuator.prototype.getTileColor = function(text)
+  {
+    for (let i = 0; i < this.tileData.length; i++)
+    {
+      if (this.tileData[i][0] == text)
+      {
+        return this.tileData[i][2];
+      }
+    }
+  }
 
 HTMLActuator.prototype.getTotalRarity = function (fullText) {
   var rarity = 1;
