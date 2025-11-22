@@ -121,10 +121,13 @@ HTMLActuator.prototype.triggerRarityGlow = function (tileText, bgColors) {
   r.classList.remove("rarityGlow");
   void r.offsetWidth;
   r.classList.add("rarityGlow");
-  var animationClass = document.getElementsByClassName("rarityGlow")[0];
   r.style.setProperty('--tileColor1', bgColors[0]);
   r.style.setProperty('--tileColor2', bgColors[1]);
   r.style.setProperty('--tileColor3', bgColors[2]);
+  var q = document.querySelector('html');
+  q.classList.remove("rarityGlow");
+  void q.offsetWidth;
+  q.classList.add("rarityGlow");
   this.animationRunning = true;
   setTimeout(() => {this.animationRunning = false;}, 4000);
 }
