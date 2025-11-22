@@ -98,7 +98,7 @@ GameManager.prototype.randomTile = function (list) {
     {
       if (!(Math.random() < 1 - (1 / list[i][1])))
       {
-        if (list[i][0] === "2") self.won = true;
+        if (list[i][0] === "2") this.won = true;
         return list[i][0];
       }
     }
