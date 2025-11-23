@@ -43,7 +43,7 @@ function HTMLActuator() {
     ["1", 1, "#7c7f66"]
   ];
   this.secondaryTileRarity = [   
-    ["Z", 1000000]
+    ["Z", 1000000],
     ["Y", 100000],
     ["X", 80000],
     ["W", 60000],
