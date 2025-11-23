@@ -6,7 +6,7 @@ function GameManager(size, InputManager, Actuator, ScoreManager) {
 
   this.startTiles   = 1;
   this.ids          = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
-
+  
   this.inputManager.on("move", this.move.bind(this));
   this.inputManager.on("restart", this.restart.bind(this));
   this.inputManager.on("keepPlaying", this.keepPlaying.bind(this));
@@ -60,16 +60,20 @@ GameManager.prototype.addStartTiles = function () {
 // Adds a tile in a random position
 GameManager.prototype.addRandomTile = function () {
   if (this.grid.cellsAvailable()) {
-    //var value = Math.random() < 0.999999999 ? Math.random() < 0.999999998 ? Math.random() < 0.999999995 ? Math.random() < 0.99999999 ? Math.random() < 0.99999998 ? Math.random() < 0.999999975 ? Math.random() < 0.999999971428571 ? Math.random() < 0.9999999666 ? Math.random() < 0.99999996 ? Math.random() < 0.99999995 ? Math.random() < 0.9999999333 ? Math.random() < 0.9999999 ? Math.random() < 0.9999998 ? Math.random() < 0.9999996 ? Math.random() < 0.999999375 ? Math.random() < 0.999999 ? Math.random() < 0.9999984 ? Math.random() < 0.9999975 ? Math.random() < 0.999996 ? Math.random() < 0.99999444 ? Math.random() < 0.999991667 ? Math.random() < 0.99998666 ? Math.random() < 0.99998 ? Math.random() < 0.9999666 ? Math.random() < 0.9999333 ? Math.random() < 0.9999 ? 1: 99991: 99992: 99993: 99994: 99995: 99996: 99997: 99998: 99999: 999910: 999911: 999912: 999913: 999914: 999915: 999916: 999917: 999918: 999919: 999920: 999921: 999922: 999923: 999924: 999925: 999926;
     var value = this.randomTile(this.actuator.tileData);
     var text = value.toString();
     
+    var badWords =                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ['SEX', 'ASS', 'CUM'];
     if (/[A-Z]/.test(text[0]) || text == ".") {
       for (let i = 0; i < 2; i++) {
-          //var tempText = Math.random() < 0.999999 ? Math.random() < 0.99999 ? Math.random() < 0.9999875 ? Math.random() < 0.99998333 ? Math.random() < 0.999975 ? Math.random() < 0.99995 ? Math.random() < 0.9999 ? Math.random() < 0.995 ? Math.random() < 0.9998 ? Math.random() < 0.99975 ? Math.random() < 0.99966666667 ? Math.random() < 0.9996 ? Math.random() < 0.9995 ? Math.random() < 0.9993333333 ? Math.random() < 0.999 ? Math.random() < 0.99875 ? Math.random() < 0.998333333 ? Math.random() < 0.998 ? Math.random() < 0.9975 ? Math.random() < 0.9966666667 ? Math.random() < 0.996 ? Math.random() < 0.99375 ? Math.random() < 0.99 ? Math.random() < 0.98 ? Math.random() < 0.95 ? Math.random() < 0.9 ? "": "A": "B": "C": "D": "E": "F": "G": "H": "I": "J": "K": "L": "M": "N": "O": "P": "Q": "R": "S": "T": "U": "V": "W": "X": "Y": "Z";
           var tempText = this.randomTile(this.actuator.secondaryTileRarity);
           if (tempText == "") {break;}
           text += tempText;
+          if (badWords.includes(text))
+          {
+            text = text[0];
+            i = 0;
+          }
         }
     }
 
