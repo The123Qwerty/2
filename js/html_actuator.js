@@ -272,12 +272,16 @@ HTMLActuator.prototype.triggerRarityGlow = function (tileText, bgColors) {
   setTimeout(() => {this.animationRunning = false;}, 3000);
 }
 
-HTMLActuator.prototype.superRareTileReveal = function (tile) {
-  const clone = tile.cloneNode();
-  clone.style.transform = 'scale(2, 2)';
-  clone.style.position = 'absolute';
-  clone.style.left = '50%';
-  clone.style.top = '50%';
+HTMLActuator.prototype.superRareTileReveal = function (inner) {
+  const displayTile = document.createElement("div");
+  displayTile.style.position = 'absolute';
+  displayTile.style.left = '50%';
+  displayTile.style.top = '50%';
+  displayTile.style.width = '25vw';
+  displayTile.style.height = '25vh';
+  displayTile.style.zIndex = '101';
+  displayTile.appendChild(inner);
+  displayTile.style.animation = 'fade-in 1s';
   const blackLayer = document.createElement("div");
   blackLayer.style.position = 'absolute';
   blackLayer.style.background = 'rgba(0, 0, 0, 0.7)';
@@ -285,10 +289,11 @@ HTMLActuator.prototype.superRareTileReveal = function (tile) {
   blackLayer.style.top = '0px';
   blackLayer.style.width = '100vw';
   blackLayer.style.height = '100vh';
+  blackLayer.style.zIndex = '100';
   document.body.appendChild(blackLayer);
-  document.body.appendChild(clone);
+  document.body.appendChild(displayTile);
   this.animationRunning = true;
-  setTimeout(() => {this.animationRunning = false; blackLayer.remove(); clone.remove();}, 4000);
+  setTimeout(() => {this.animationRunning = false; blackLayer.remove(); displayTile.remove();}, 4000);
 }
 
 HTMLActuator.prototype.addTile = function (tile) {
@@ -344,7 +349,7 @@ HTMLActuator.prototype.addTile = function (tile) {
   // Put the tile on the board
   this.tileContainer.appendChild(wrapper);
 
-  this.superRareTileReveal(wrapper);
+  this.superRareTileReveal(inner);
 };
 
 HTMLActuator.prototype.applyClasses = function (element, classes) {
