@@ -348,7 +348,7 @@ HTMLActuator.prototype.addTile = function (tile) {
   // Add the inner part of the tile to the wrapper
   wrapper.appendChild(inner);
 
-  if (classes.includes("tile-new") && this.getTotalRarity(tile.text >= 100000000))
+  if (classes.includes("tile-new") && this.getTotalRarity(tile.text) >= 100000000)
   {
     setTimeout(() => {this.superRareTileReveal(inner, wrapper);}, 3000);
   }
