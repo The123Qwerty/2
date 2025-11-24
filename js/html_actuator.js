@@ -321,9 +321,9 @@ HTMLActuator.prototype.addCommas = function (number) {
   var result = "";
   var k = 0;
   var string = number.toString();
-  for (let i = string.length - 4; i > 1; i -= 3)
+  for (let i = string.length - 3; i > 0; i -= 3)
   {
-    result = "," + string.substring(i, i + 3 + 1) + result;
+    result = "," + string.substring(i, i + 3) + result;
     k = i - 1;
   }
   result = string.substring(0, k + 1) + result;
