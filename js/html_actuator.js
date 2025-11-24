@@ -269,7 +269,26 @@ HTMLActuator.prototype.triggerRarityGlow = function (tileText, bgColors) {
   q.style.setProperty('--tileColor2', bgColors[1]);
   q.style.setProperty('--tileColor3', bgColors[2]);
   this.animationRunning = true;
-  setTimeout(() => {this.animationRunning = false;}, 4000);
+  setTimeout(() => {this.animationRunning = false;}, 3000);
+}
+
+HTMLActuator.prototype.superRareTileReveal = function (tile) {
+  const clone = tile.cloneNode();
+  clone.style.transform = 'scale(2, 2)';
+  clone.style.position = 'absolute';
+  clone.style.left = '50%';
+  clone.style.top = '50%';
+  const blackLayer = document.createElement("div");
+  blackLayer.style.position = 'absolute';
+  blackLayer.style.background = 'rgba(0, 0, 0, 0.7)';
+  blackLayer.style.left = '0px';
+  blackLayer.style.top = '0px';
+  blackLayer.style.width = '100vw';
+  blackLayer.style.height = '100vh';
+  document.body.appendChild(blackLayer);
+  document.body.appendChild(clone);
+  this.animationRunning = true;
+  setTimeout(() => {this.animationRunning = false; blackLayer.remove(); clone.remove();}, 4000);
 }
 
 HTMLActuator.prototype.addTile = function (tile) {
@@ -324,6 +343,8 @@ HTMLActuator.prototype.addTile = function (tile) {
 
   // Put the tile on the board
   this.tileContainer.appendChild(wrapper);
+
+  this.superRareTileReveal(wrapper);
 };
 
 HTMLActuator.prototype.applyClasses = function (element, classes) {
