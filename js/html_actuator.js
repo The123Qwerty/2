@@ -283,6 +283,7 @@ HTMLActuator.prototype.superRareTileReveal = function (inner, wrapper) {
   displayTile.style.top = '40%';
   displayTile.style.transform = 'scale(4)';
   displayTile.style.zIndex = '101';
+  displayTile.style.opacity = '0';
   displayTile.style.animation = 'fade-in 3s ease 2s';
   const blackLayer = document.createElement("div");
   blackLayer.style.position = 'absolute';
