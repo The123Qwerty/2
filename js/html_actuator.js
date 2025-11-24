@@ -275,6 +275,22 @@ HTMLActuator.prototype.triggerRarityGlow = function (tileText, bgColors) {
 
 HTMLActuator.prototype.superRareTileReveal = function (inner, wrapper) {
   const displayTile = document.createElement("div");
+  const rarityBox = document.createElement("div");
+  rarityBox.style.position = 'absolute';
+  rarityBox.style.left = '33.5%';
+  rarityBox.style.top = '65%';
+  rarityBox.style.width = '350px';
+  rarityBox.style.zIndex = '101';
+  rarityBox.style.borderRadius = '6px';
+  rarityBox.style.background = '#857e77';
+  rarityBox.style.fontWeight = 'bold';
+  rarityBox.style.textAlign = 'center';
+  rarityBox.style.fontSize = '30px';
+  rarityBox.style.color = '#f9f6f2';
+  rarityBox.style.padding = '30px';
+  rarityBox.textContent = "Rarity: 1 in " + this.getTotalRarity(text);
+  rarityBox.style.opacity = '0';
+  rarityBox.style.animation = 'fade-in 3s ease 5s';
   var temp = inner.cloneNode(true);
   displayTile.appendChild(temp);
   displayTile.classList.add("tile");
@@ -285,6 +301,7 @@ HTMLActuator.prototype.superRareTileReveal = function (inner, wrapper) {
   displayTile.style.zIndex = '101';
   displayTile.style.opacity = '0';
   displayTile.style.animation = 'fade-in 3s ease 2s';
+  displayTile.style.animationFillMode = 'forwards';
   const blackLayer = document.createElement("div");
   blackLayer.style.position = 'absolute';
   blackLayer.style.background = 'rgba(0, 0, 0, 0.7)';
@@ -293,10 +310,11 @@ HTMLActuator.prototype.superRareTileReveal = function (inner, wrapper) {
   blackLayer.style.width = '100vw';
   blackLayer.style.height = '100vh';
   blackLayer.style.zIndex = '100';
+  document.body.appendChild(rarityBox);
   document.body.appendChild(blackLayer);
   document.body.appendChild(displayTile);
   this.animationRunning = true;
-  setTimeout(() => {this.animationRunning = false; blackLayer.remove(); displayTile.remove(); this.tileContainer.appendChild(wrapper);}, 5000);
+  setTimeout(() => {this.animationRunning = false; blackLayer.remove(); displayTile.remove(); rarityBox.remove(); this.tileContainer.appendChild(wrapper);}, 5000);
 }
 
 HTMLActuator.prototype.addTile = function (tile) {
