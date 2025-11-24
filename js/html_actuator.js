@@ -275,21 +275,14 @@ HTMLActuator.prototype.triggerRarityGlow = function (tileText, bgColors) {
 
 HTMLActuator.prototype.superRareTileReveal = function (inner) {
   const displayTile = document.createElement("div");
-  const text = document.createTextNode(inner.textContent);
-  displayTile.appendChild(text);
+  displayTile.appendChild(inner);
+  displayTile.classList.add("tile");
   displayTile.style.position = 'absolute';
   displayTile.style.left = '50%';
   displayTile.style.top = '40%';
-  displayTile.style.width = '200px';
-  displayTile.style.height = '200px';
+  displayTile.style.transform = 'scale(4)';
   displayTile.style.zIndex = '101';
-  displayTile.style.borderRadius = '6px';
-  displayTile.style.fontFamily = '"Clear Sans", "Helvetica Neue", Arial, sans-serif';
-  displayTile.style.fontSize = inner.fontSize;
-  displayTile.style.background = inner.style.background;
-  displayTile.style.color = inner.style.color;
   displayTile.style.animation = 'fade-in 3s';
-  text.style.animation = 'fade-in 3s ease 3s';
   const blackLayer = document.createElement("div");
   blackLayer.style.position = 'absolute';
   blackLayer.style.background = 'rgba(0, 0, 0, 0.7)';
