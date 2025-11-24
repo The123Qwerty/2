@@ -273,7 +273,7 @@ HTMLActuator.prototype.triggerRarityGlow = function (tileText, bgColors) {
   setTimeout(() => {this.animationRunning = false;}, 3000);
 }
 
-HTMLActuator.prototype.superRareTileReveal = function (inner, wrapper) {
+HTMLActuator.prototype.superRareTileReveal = function (inner, wrapper, text) {
   const displayTile = document.createElement("div");
   const rarityBox = document.createElement("div");
   rarityBox.style.position = 'absolute';
@@ -369,7 +369,7 @@ HTMLActuator.prototype.addTile = function (tile) {
 
   if (classes.includes("tile-new") && this.getTotalRarity(tile.text) >= 100000000)
   {
-    setTimeout(() => {this.superRareTileReveal(inner, wrapper);}, 3000);
+    setTimeout(() => {this.superRareTileReveal(inner, wrapper, tile.text);}, 3000);
   }
   else
   {
