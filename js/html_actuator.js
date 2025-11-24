@@ -314,7 +314,7 @@ HTMLActuator.prototype.superRareTileReveal = function (inner, wrapper, text) {
   document.body.appendChild(blackLayer);
   document.body.appendChild(displayTile);
   this.animationRunning = true;
-  setTimeout(() => {this.animationRunning = false; blackLayer.remove(); displayTile.remove(); rarityBox.remove(); this.tileContainer.appendChild(wrapper);}, 5000);
+  setTimeout(() => {this.animationRunning = false; blackLayer.remove(); displayTile.remove(); rarityBox.remove(); this.tileContainer.appendChild(wrapper);}, 8000);
 }
 
 HTMLActuator.prototype.addTile = function (tile) {
