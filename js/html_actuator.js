@@ -288,7 +288,7 @@ HTMLActuator.prototype.superRareTileReveal = function (inner, wrapper, text) {
   rarityBox.style.fontSize = '30px';
   rarityBox.style.color = '#f9f6f2';
   rarityBox.style.padding = '30px';
-  rarityBox.textContent = "Rarity: 1 in " + this.getTotalRarity(text);
+  rarityBox.textContent = "Rarity: 1 in " + this.addCommas(this.getTotalRarity(text));
   rarityBox.style.opacity = '0';
   rarityBox.style.animation = 'fade-in 3s ease 5s';
   var temp = inner.cloneNode(true);
@@ -315,6 +315,18 @@ HTMLActuator.prototype.superRareTileReveal = function (inner, wrapper, text) {
   document.body.appendChild(displayTile);
   this.animationRunning = true;
   setTimeout(() => {this.animationRunning = false; blackLayer.remove(); displayTile.remove(); rarityBox.remove(); this.tileContainer.appendChild(wrapper);}, 8000);
+}
+
+HTMLActuator.prototype.addCommas = function (number) {
+  var result = "";
+  var k = 0;
+  for (let i = number.length - 4; i > 1; i -= 3)
+  {
+    result = "," + number.slice(i, i + 3 + 1) + result;
+    k = i - 1;
+  }
+  result = number.slice(0, k + 1) + result;
+  return result;
 }
 
 HTMLActuator.prototype.addTile = function (tile) {
