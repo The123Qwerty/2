@@ -320,12 +320,13 @@ HTMLActuator.prototype.superRareTileReveal = function (inner, wrapper, text) {
 HTMLActuator.prototype.addCommas = function (number) {
   var result = "";
   var k = 0;
-  for (let i = number.length - 4; i > 1; i -= 3)
+  var string = number.toString();
+  for (let i = string.length - 4; i > 1; i -= 3)
   {
-    result = "," + number.slice(i, i + 3 + 1) + result;
+    result = "," + string.slice(i, i + 3 + 1) + result;
     k = i - 1;
   }
-  result = number.slice(0, k + 1) + result;
+  result = string.slice(0, k + 1) + result;
   return result;
 }
 
