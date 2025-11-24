@@ -154,6 +154,7 @@ HTMLActuator.prototype.clearContainer = function (container) {
 
 HTMLActuator.prototype.setTileColor = function (tileText, inner, newTile) {
   var bgColorsForThisTile = [];
+  inner.style.color = '#f9f6f2';
   if (!/[A-Z]/.test(tileText[0]))
     {
       bgColorsForThisTile.push(this.getTileColor(tileText));
@@ -274,18 +275,21 @@ HTMLActuator.prototype.triggerRarityGlow = function (tileText, bgColors) {
 
 HTMLActuator.prototype.superRareTileReveal = function (inner) {
   const displayTile = document.createElement("div");
+  const text = document.createTextNode(inner.textContent);
+  displayTile.appendChild(text);
   displayTile.style.position = 'absolute';
   displayTile.style.left = '50%';
-  displayTile.style.top = '50%';
-  displayTile.style.width = '100px';
-  displayTile.style.height = '100px';
+  displayTile.style.top = '40%';
+  displayTile.style.width = '200px';
+  displayTile.style.height = '200px';
   displayTile.style.zIndex = '101';
-  displayTile.style.borderRadius = '3px';
+  displayTile.style.borderRadius = '6px';
   displayTile.style.fontFamily = '"Clear Sans", "Helvetica Neue", Arial, sans-serif';
   displayTile.style.fontSize = inner.fontSize;
-  displayTile.style.background = inner.background;
-  displayTile.textcontent = inner.textContent;
+  displayTile.style.background = inner.style.background;
+  displayTile.style.color = inner.style.color;
   displayTile.style.animation = 'fade-in 3s';
+  text.style.animation = 'fade-in 3s ease 3s';
   const blackLayer = document.createElement("div");
   blackLayer.style.position = 'absolute';
   blackLayer.style.background = 'rgba(0, 0, 0, 0.7)';
