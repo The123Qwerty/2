@@ -353,7 +353,10 @@ HTMLActuator.prototype.addTile = function (tile) {
   // Put the tile on the board
   this.tileContainer.appendChild(wrapper);
 
-  this.superRareTileReveal(inner);
+  if (classes.includes("tile-new"))
+  {
+    this.superRareTileReveal(inner);
+  }
 };
 
 HTMLActuator.prototype.applyClasses = function (element, classes) {
