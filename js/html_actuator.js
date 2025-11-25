@@ -430,8 +430,11 @@ HTMLActuator.prototype.addTile = function (tile) {
   }
   else
   {
-    // Put the tile on the board
-    this.tileContainer.appendChild(wrapper);
+    if (this.getTotalRarity(tile.text) < 10000000000)
+    {
+      // Put the tile on the board
+      this.tileContainer.appendChild(wrapper);
+    }
   }
 };
 
