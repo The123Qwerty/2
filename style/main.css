@@ -535,8 +535,8 @@ hr {
 }
 
 @keyframes flash {
-0% {background: radial-gradient(circle, #ffffff 1%, var(--tileColor1) 10%, var(--tileColor2) 20%, var(--tileColor3) 30%, #ffffff 70%); width: 2vw; height: 2vh; transform: translate(49vw, 49vh);}
-100% {background: radial-gradient(circle, #ffffff 1%, var(--tileColor1) 10%, var(--tileColor2) 20%, var(--tileColor3) 30%, #ffffff 70%); width: 400vw; height: 400vh; transform: translate(-150vw, -150vh);}
+0% {background: radial-gradient(circle, #ffffff 1%, var(--tileColor1) 10%, var(--tileColor2) 20%, var(--tileColor3) 30%, #ffffff 50%); width: 2vw; height: 2vh; transform: translate(49vw, 49vh);}
+100% {background: radial-gradient(circle, #ffffff 1%, var(--tileColor1) 10%, var(--tileColor2) 20%, var(--tileColor3) 30%, #ffffff 50%); width: 400vw; height: 400vh; transform: translate(-150vw, -150vh);}
 }
 
 
