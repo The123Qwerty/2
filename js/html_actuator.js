@@ -318,7 +318,10 @@ HTMLActuator.prototype.superRareTileReveal = function (inner, wrapper, text) {
   blackLayer.style.height = '100vh';
   blackLayer.style.zIndex = '100';
   document.body.appendChild(rarityBox);
-  document.body.appendChild(blackLayer);
+  if (this.getTotalRarity(text) < 10000000000)
+  {
+    document.body.appendChild(blackLayer);
+  }
   document.body.appendChild(displayTile);
   this.animationRunning = true;
   setTimeout(() => {this.animationRunning = false; blackLayer.remove(); displayTile.remove(); rarityBox.remove(); this.tileContainer.appendChild(wrapper);}, 8000);
@@ -353,7 +356,7 @@ HTMLActuator.prototype.ultraRareAnimation = function (bgColors, inner, wrapper, 
   blackLayer2.style.width = '100vw';
   blackLayer2.style.height = '100vh';
   blackLayer2.style.zIndex = '101';
-  blackLayer2.style.animation = 'flash 3s ease-in 7s forwards';
+  blackLayer2.style.animation = 'flash 3s ease-out 7s forwards';
   blackLayer2.style.transformOrgin = 'center';
   document.body.appendChild(blackLayer);
   document.body.appendChild(blackLayer2);
