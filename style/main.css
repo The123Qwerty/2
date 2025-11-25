@@ -528,6 +528,15 @@ hr {
   animation: animatedGradient 3s linear;
 }
 
+@keyframes rotateBoard {
+100% {transform: scale(0) rotate(2000deg); background: #000000;}
+}
+
+@keyframes flash {
+0% {background: radial-gradient(circle, #000000 1%, var(--tileColor1) 10%, var(--tileColor2) 20%, var(--tileColor3) 30%, #000000 100%); transform: scale(0);}
+100% {background: radial-gradient(circle, #000000 1%, var(--tileColor1) 10%, var(--tileColor2) 20%, var(--tileColor3) 30%, #000000 100%); transform: scale(150);}
+}
+
 
 @-webkit-keyframes appear {
   0% {
