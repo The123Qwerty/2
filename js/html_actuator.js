@@ -329,6 +329,7 @@ HTMLActuator.prototype.superRareTileReveal = function (inner, wrapper, text) {
 
 HTMLActuator.prototype.ultraRareAnimation = function (bgColors, inner, wrapper, text) {
   var r = document.querySelector('body');
+  wrapper.appendChild(inner);
   r.style.setProperty('--tileColor1', bgColors[0]);
   r.style.setProperty('--tileColor2', bgColors[1]);
   r.style.setProperty('--tileColor3', bgColors[2]);
