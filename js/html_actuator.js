@@ -329,12 +329,13 @@ HTMLActuator.prototype.ultraRareAnimation = function (bgColors, inner, wrapper, 
   r.style.setProperty('--tileColor1', bgColors[0]);
   r.style.setProperty('--tileColor2', bgColors[1]);
   r.style.setProperty('--tileColor3', bgColors[2]);
-  var fakeBoard = r.getElementsByClassName("game-container")[0].cloneNode(true);
+  var g = r.getElementsByClassName("game-container")[0];
+  var fakeBoard = g.cloneNode(true);
   fakeBoard.style.zIndex = '102';
   fakeBoard.style.animation = 'rotateBoard 5s ease-in';
   fakeBoard.style.transformOrgin = 'center';
-  fakeBoard.style.left = '50%';
-  fakeBoard.style.top = '50%';
+  fakeBoard.style.left = g.offsetLeft;
+  fakeBoard.style.top = g.offsetTop;
   const blackLayer = document.createElement("div");
   blackLayer.style.position = 'absolute';
   blackLayer.style.background = 'rgba(0, 0, 0, 1)';
