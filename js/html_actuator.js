@@ -329,9 +329,12 @@ HTMLActuator.prototype.ultraRareAnimation = function (bgColors, inner, wrapper, 
   r.style.setProperty('--tileColor1', bgColors[0]);
   r.style.setProperty('--tileColor2', bgColors[1]);
   r.style.setProperty('--tileColor3', bgColors[2]);
-  var fakeBoard = this.tileContainer.cloneNode(true);
+  var fakeBoard = r.getElementsByClassName("game-container")[0].cloneNode(true);
   fakeBoard.style.zIndex = '102';
   fakeBoard.style.animation = 'rotateBoard 5s ease-in';
+  fakeBoard.style.transformOrgin = 'center';
+  fakeBoard.style.left = '50%';
+  fakeBoard.style.top = '50%';
   const blackLayer = document.createElement("div");
   blackLayer.style.position = 'absolute';
   blackLayer.style.background = 'rgba(0, 0, 0, 1)';
@@ -349,6 +352,7 @@ HTMLActuator.prototype.ultraRareAnimation = function (bgColors, inner, wrapper, 
   blackLayer2.style.height = '100vh';
   blackLayer2.style.zIndex = '101';
   blackLayer2.style.animation = 'flash 3s ease-in 5s';
+  blackLayer2.style.transformOrgin = 'center';
   document.body.appendChild(blackLayer);
   document.body.appendChild(blackLayer2);
   document.body.appendChild(fakeBoard);
