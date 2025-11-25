@@ -333,13 +333,13 @@ HTMLActuator.prototype.ultraRareAnimation = function (bgColors, inner, wrapper, 
   var fakeBoard = g.cloneNode(true);
   fakeBoard.style.position = 'absolute';
   fakeBoard.style.zIndex = '102';
-  fakeBoard.style.animation = 'rotateBoard 5s ease-in forwards';
+  fakeBoard.style.animation = 'rotateBoard 5s ease-in 2s forwards';
   fakeBoard.style.transformOrgin = 'center';
-  fakeBoard.style.left = (50% - fakeboard.offsetWidth) + "px";
-  fakeBoard.style.top = '40%';
+  fakeBoard.style.left = (window.innerWidth/2 - 300) + "px";
+  fakeBoard.style.top = '20%';
   const blackLayer = document.createElement("div");
   blackLayer.style.position = 'absolute';
-  blackLayer.style.background = 'rgba(0, 0, 0, 1)';
+  blackLayer.style.background = 'rgba(255, 255, 255, 1)';
   blackLayer.style.left = '0px';
   blackLayer.style.top = '0px';
   blackLayer.style.width = '100vw';
@@ -347,19 +347,20 @@ HTMLActuator.prototype.ultraRareAnimation = function (bgColors, inner, wrapper, 
   blackLayer.style.zIndex = '100';
   const blackLayer2 = document.createElement("div");
   blackLayer2.style.position = 'absolute';
-  blackLayer2.style.background = 'rgba(0, 0, 0, 1)';
+  blackLayer2.style.background = 'rgba(255, 255, 255, 1)';
   blackLayer2.style.left = '0px';
   blackLayer2.style.top = '0px';
   blackLayer2.style.width = '100vw';
   blackLayer2.style.height = '100vh';
   blackLayer2.style.zIndex = '101';
-  blackLayer2.style.animation = 'flash 3s ease-in 5s';
+  blackLayer2.style.animation = 'flash 3s ease-in 7s forwards';
   blackLayer2.style.transformOrgin = 'center';
   document.body.appendChild(blackLayer);
   document.body.appendChild(blackLayer2);
   document.body.appendChild(fakeBoard);
   this.animationRunning = true;
-  setTimeout(() => {blackLayer.remove(); blackLayer2.remove(); fakeBoard.remove(); wrapper.appendChild(inner); this.superRareTileReveal(inner, wrapper, text);}, 8000);
+  setTimeout(() => {this.superRareTileReveal(inner, wrapper, text);}, 8000);
+  setTimeout(() => {blackLayer.remove(); blackLayer2.remove(); fakeBoard.remove();}, 16000);
 }
 
 HTMLActuator.prototype.addCommas = function (number) {
