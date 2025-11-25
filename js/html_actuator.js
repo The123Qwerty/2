@@ -152,7 +152,7 @@ HTMLActuator.prototype.clearContainer = function (container) {
   }
 };
 
-HTMLActuator.prototype.setTileColor = function (tileText, inner, newTile) {
+HTMLActuator.prototype.setTileColor = function (tileText, inner, newTile, wrapper) {
   var bgColorsForThisTile = [];
   inner.style.color = '#f9f6f2';
   if (!/[A-Z]/.test(tileText[0]))
@@ -182,7 +182,14 @@ HTMLActuator.prototype.setTileColor = function (tileText, inner, newTile) {
   
   if (this.getTotalRarity(tileText) >= 1000000 && newTile)
   {
+    if (this.getTotalRarity(tileText) >= 10000000000)
+    {
+      this.ultraRareAnimation(bgColorsForThisTile, inner, wrapper, tileText);
+    }
+    else
+    {
       this.triggerRarityGlow(tileText, bgColorsForThisTile);
+    }
   }
   
   inner.style.background = 'linear-gradient(to right, ' + bgColorsForThisTile[0] + ', ' + bgColorsForThisTile[1] + ', ' + bgColorsForThisTile[2] + ')';
@@ -317,6 +324,38 @@ HTMLActuator.prototype.superRareTileReveal = function (inner, wrapper, text) {
   setTimeout(() => {this.animationRunning = false; blackLayer.remove(); displayTile.remove(); rarityBox.remove(); this.tileContainer.appendChild(wrapper);}, 8000);
 }
 
+HTMLActuator.prototype.ultraRareAnimation = function (bgColors, inner, wrapper, text) {
+  var r = document.querySelector('body');
+  r.style.setProperty('--tileColor1', bgColors[0]);
+  r.style.setProperty('--tileColor2', bgColors[1]);
+  r.style.setProperty('--tileColor3', bgColors[2]);
+  var fakeBoard = this.tileContainer.cloneNode(true);
+  fakeBoard.style.zIndex = '102';
+  fakeBoard.style.animation = 'rotateBoard 5s ease-in';
+  const blackLayer = document.createElement("div");
+  blackLayer.style.position = 'absolute';
+  blackLayer.style.background = 'rgba(0, 0, 0, 1)';
+  blackLayer.style.left = '0px';
+  blackLayer.style.top = '0px';
+  blackLayer.style.width = '100vw';
+  blackLayer.style.height = '100vh';
+  blackLayer.style.zIndex = '100';
+  const blackLayer2 = document.createElement("div");
+  blackLayer2.style.position = 'absolute';
+  blackLayer2.style.background = 'rgba(0, 0, 0, 1)';
+  blackLayer2.style.left = '0px';
+  blackLayer2.style.top = '0px';
+  blackLayer2.style.width = '100vw';
+  blackLayer2.style.height = '100vh';
+  blackLayer2.style.zIndex = '101';
+  blackLayer2.style.animation = 'flash 3s ease-in 5s';
+  document.body.appendChild(blackLayer);
+  document.body.appendChild(blackLayer2);
+  document.body.appendChild(fakeBoard);
+  this.animationRunning = true;
+  setTimeout(() => {blackLayer.remove(); blackLayer2.remove(); fakeBoard.remove(); wrapper.appendChild(inner); this.superRareTileReveal(inner, wrapper, text);}, 8000);
+}
+
 HTMLActuator.prototype.addCommas = function (number) {
   var result = "";
   var k = 0;
@@ -367,7 +406,6 @@ HTMLActuator.prototype.addTile = function (tile) {
     this.applyClasses(wrapper, classes);
   }
 
-  this.setTileColor(tile.text, inner, classes.includes("tile-new"));
   if (tile.text.length > 3)
   {
     inner.style.fontSize = "22px";
@@ -377,10 +415,12 @@ HTMLActuator.prototype.addTile = function (tile) {
     inner.style.fontSize = "25px";
   }
 
+  this.setTileColor(tile.text, inner, classes.includes("tile-new"), wrapper);
+
   // Add the inner part of the tile to the wrapper
   wrapper.appendChild(inner);
 
-  if (classes.includes("tile-new") && this.getTotalRarity(tile.text) >= 100000000)
+  if (classes.includes("tile-new") && this.getTotalRarity(tile.text) >= 100000000 && this.getTotalRarity(tile.text) < 1000000000)
   {
     setTimeout(() => {this.superRareTileReveal(inner, wrapper, tile.text);}, 3000);
   }
