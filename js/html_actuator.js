@@ -331,6 +331,7 @@ HTMLActuator.prototype.ultraRareAnimation = function (bgColors, inner, wrapper, 
   r.style.setProperty('--tileColor3', bgColors[2]);
   var g = r.getElementsByClassName("game-container")[0];
   var fakeBoard = g.cloneNode(true);
+  fakeBoard.style.position = 'absolute';
   fakeBoard.style.zIndex = '102';
   fakeBoard.style.animation = 'rotateBoard 5s ease-in';
   fakeBoard.style.transformOrgin = 'center';
