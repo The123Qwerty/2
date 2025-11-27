@@ -12,6 +12,7 @@ html, body {
   --tileColor1: white;
   --tileColor2: white;
   --tileColor3: white;
+  --tileColor4: white;
 }
 
 body {
@@ -525,7 +526,7 @@ hr {
   }
 
 .rarityGlow {
-  background: linear-gradient(to right, var(--backgroundColor), var(--backgroundColor), var(--backgroundColor), var(--backgroundColor), var(--tileColor1), var(--tileColor2), var(--tileColor3), var(--backgroundColor),var(--backgroundColor),var(--backgroundColor),var(--backgroundColor));
+  background: linear-gradient(to right, var(--backgroundColor), var(--backgroundColor), var(--backgroundColor), var(--backgroundColor), var(--tileColor1), var(--tileColor2), var(--tileColor3), var(--tileColor4), var(--backgroundColor),var(--backgroundColor),var(--backgroundColor),var(--backgroundColor));
   background-size: 400% 400%;
   animation: animatedGradient 3s linear;
 }
@@ -535,8 +536,8 @@ hr {
 }
 
 @keyframes flash {
-0% {background: radial-gradient(circle, #ffffff 1%, var(--tileColor1) 10%, var(--tileColor2) 20%, var(--tileColor3) 30%, #ffffff 50%); width: 2vw; height: 2vh; transform: translate(49vw, 49vh);}
-100% {background: radial-gradient(circle, #ffffff 1%, var(--tileColor1) 10%, var(--tileColor2) 20%, var(--tileColor3) 30%, #ffffff 50%); width: 400vw; height: 400vh; transform: translate(-150vw, -150vh);}
+0% {background: radial-gradient(circle, #ffffff 1%, var(--tileColor1) 10%, var(--tileColor2) 20%, var(--tileColor3) 30%, var(--tileColor4) 40%, #ffffff 50%); width: 2vw; height: 2vh; transform: translate(49vw, 49vh);}
+100% {background: radial-gradient(circle, #ffffff 1%, var(--tileColor1) 10%, var(--tileColor2) 20%, var(--tileColor3) 30%, var(--tileColor4) 40%, #ffffff 50%); width: 400vw; height: 400vh; transform: translate(-150vw, -150vh);}
 }
 
 
