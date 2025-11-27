@@ -175,7 +175,13 @@ HTMLActuator.prototype.setTileColor = function (tileText, inner, newTile, wrappe
     }
   }
   var lastColor = bgColorsForThisTile[bgColorsForThisTile.length - 1];
-  while (bgColorsForThisTile.length < 3)
+  
+  if (bgColorsForThisTile.length == 2)
+  {
+    bgColorsForThisTile.unshift(bgColorsForThisTile[0]);
+  }
+  
+  while (bgColorsForThisTile.length < 4)
   {
     bgColorsForThisTile.push(lastColor);
   }
@@ -192,7 +198,7 @@ HTMLActuator.prototype.setTileColor = function (tileText, inner, newTile, wrappe
     }
   }
   
-  inner.style.background = 'linear-gradient(to right, ' + bgColorsForThisTile[0] + ', ' + bgColorsForThisTile[1] + ', ' + bgColorsForThisTile[2] + ')';
+  inner.style.background = 'linear-gradient(to right, ' + bgColorsForThisTile[0] + ', ' + bgColorsForThisTile[1] + ', ' + bgColorsForThisTile[2] + ', ' + bgColorsForThisTile[3] + ')';
 }
 
 HTMLActuator.prototype.getTileColor = function(text, font = false)
@@ -269,6 +275,7 @@ HTMLActuator.prototype.triggerRarityGlow = function (tileText, bgColors) {
   r.style.setProperty('--tileColor1', bgColors[0]);
   r.style.setProperty('--tileColor2', bgColors[1]);
   r.style.setProperty('--tileColor3', bgColors[2]);
+  r.style.setProperty('--tileColor4', bgColors[3]);
   var q = document.querySelector('html');
   q.classList.remove("rarityGlow");
   void q.offsetWidth;
@@ -276,6 +283,7 @@ HTMLActuator.prototype.triggerRarityGlow = function (tileText, bgColors) {
   q.style.setProperty('--tileColor1', bgColors[0]);
   q.style.setProperty('--tileColor2', bgColors[1]);
   q.style.setProperty('--tileColor3', bgColors[2]);
+  q.style.setProperty('--tileColor4', bgColors[3]);
   this.animationRunning = true;
   setTimeout(() => {this.animationRunning = false;}, 3000);
 }
@@ -333,6 +341,7 @@ HTMLActuator.prototype.ultraRareAnimation = function (bgColors, inner, wrapper, 
   r.style.setProperty('--tileColor1', bgColors[0]);
   r.style.setProperty('--tileColor2', bgColors[1]);
   r.style.setProperty('--tileColor3', bgColors[2]);
+  r.style.setProperty('--tileColor4', bgColors[3]);
   var g = r.getElementsByClassName("game-container")[0];
   var fakeBoard = g.cloneNode(true);
   fakeBoard.style.position = 'absolute';
@@ -419,9 +428,16 @@ HTMLActuator.prototype.addTile = function (tile) {
 
   if (tile.text.length > 3)
   {
-    inner.style.fontSize = "22px";
+    if (tile.text.includes("."))
+    {
+      inner.style.fontSize = "22px";
+    }
+    else
+    {
+      inner.style.fontSize = "18px";
+    }
   }
-  if (tile.text.length > 2 && !(tile.text.includes(".")))
+  if (tile.text.length == 3 && !(tile.text.includes(".")))
   {
     inner.style.fontSize = "25px";
   }
