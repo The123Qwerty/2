@@ -155,7 +155,7 @@ HTMLActuator.prototype.clearContainer = function (container) {
 HTMLActuator.prototype.setTileColor = function (tileText, inner, newTile, wrapper) {
   var bgColorsForThisTile = [];
   inner.style.color = '#f9f6f2';
-  if (!/[A-Z]/.test(tileText[0]))
+  if (!/[A-Z]/.test(tileText[0]) && tileText[0] != "." && tileText[0] != '\xa0' && tileText[0] != "-")
     {
       bgColorsForThisTile.push(this.getTileColor(tileText));
       if (this.getTileColor(tileText, true) != "")
