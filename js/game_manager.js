@@ -64,7 +64,7 @@ GameManager.prototype.addRandomTile = function () {
     var text = value.toString();
     
     var badWords =                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ['SEX', 'ASS', 'CUM'];
-    if (/[A-Z]/.test(text[0]) || text == "." || text == " " || text == "-") {
+    if (/[A-Z]/.test(text[0]) || text == "." || text == '\xa0' || text == "-") {
       for (let i = 0; i < 3; i++) {
           var tempText = this.randomTile(this.actuator.secondaryTileRarity);
           if (tempText == "") {break;}
