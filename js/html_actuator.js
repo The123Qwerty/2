@@ -155,7 +155,7 @@ HTMLActuator.prototype.clearContainer = function (container) {
 HTMLActuator.prototype.setTileColor = function (tileText, inner, newTile, wrapper) {
   var bgColorsForThisTile = [];
   inner.style.color = '#f9f6f2';
-  if (/\d/.test(tileText[0]))
+  if (/\d/.test(tileText))
     {
       bgColorsForThisTile.push(this.getTileColor(tileText));
       if (this.getTileColor(tileText, true) != "")
@@ -225,7 +225,7 @@ HTMLActuator.prototype.getTileColor = function(text, font = false)
 
 HTMLActuator.prototype.getTotalRarity = function (fullText) {
   var rarity = 1;
-  if (/\d/.test(fullText[0]))
+  if (/\d/.test(fullText))
   {
     for (let i = 0; i < this.tileData.length; i++)
       {
