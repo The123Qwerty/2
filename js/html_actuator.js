@@ -5,6 +5,7 @@ function HTMLActuator() {
   this.messageContainer = document.querySelector(".game-message");
   this.sharingContainer = document.querySelector(".score-sharing");
   this.animationRunning = false;
+  this.discoveredTiles = window.localStorage.getItem("discoveredTiles") == undefined ? [] : window.localStorage.getItem("discoveredTiles");
   this.tileData = [
     ["3", 10000000, '#2170c4'],
     ["Z", 1000000000, '#2f88ff'],
@@ -197,8 +198,22 @@ HTMLActuator.prototype.setTileColor = function (tileText, inner, newTile, wrappe
       this.triggerRarityGlow(tileText, bgColorsForThisTile);
     }
   }
+  else
+  {
+    this.updateDiscoveredTiles(tileText);
+  }
   
   inner.style.background = 'linear-gradient(to right, ' + bgColorsForThisTile[0] + ', ' + bgColorsForThisTile[1] + ', ' + bgColorsForThisTile[2] + ', ' + bgColorsForThisTile[3] + ')';
+}
+
+HTMLActuator.prototype.updateDiscoveredTiles = function(text)
+{
+  if (!this.discoveredTiles.includes(text))
+    {
+      this.discoveredTiles.push(text);
+      window.localStorage.setItem("discoveredTiles", this.discoveredTiles);
+      alert("New tile: " + text);
+    }
 }
 
 HTMLActuator.prototype.getTileColor = function(text, font = false)
@@ -285,7 +300,7 @@ HTMLActuator.prototype.triggerRarityGlow = function (tileText, bgColors) {
   q.style.setProperty('--tileColor3', bgColors[2]);
   q.style.setProperty('--tileColor4', bgColors[3]);
   this.animationRunning = true;
-  setTimeout(() => {this.animationRunning = false;}, 3000);
+  setTimeout(() => {this.animationRunning = false; this.updateDiscoveredTiles(tileText);}, 3000);
 }
 
 HTMLActuator.prototype.superRareTileReveal = function (inner, wrapper, text) {
@@ -332,7 +347,7 @@ HTMLActuator.prototype.superRareTileReveal = function (inner, wrapper, text) {
   }
   document.body.appendChild(displayTile);
   this.animationRunning = true;
-  setTimeout(() => {this.animationRunning = false; blackLayer.remove(); displayTile.remove(); rarityBox.remove(); this.tileContainer.appendChild(wrapper);}, 8000);
+  setTimeout(() => {this.animationRunning = false; blackLayer.remove(); displayTile.remove(); rarityBox.remove(); this.tileContainer.appendChild(wrapper); this.updateDiscoveredTiles(tileText);}, 8000);
 }
 
 HTMLActuator.prototype.ultraRareAnimation = function (bgColors, inner, wrapper, text) {
