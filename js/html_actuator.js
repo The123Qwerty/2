@@ -219,7 +219,7 @@ HTMLActuator.prototype.updateDiscoveredTiles = function(inner, text)
     }
 }
 
-HTMLActuator.protoype.newTilePopup = function(inner, text)
+HTMLActuator.prototype.newTilePopup = function(inner, text)
 {
   const displayTile = document.createElement("div");
   const rarityBox = document.createElement("div");
