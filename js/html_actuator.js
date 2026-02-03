@@ -210,7 +210,14 @@ HTMLActuator.prototype.updateDiscoveredTiles = function(text)
 {
   if (!this.discoveredTiles.includes(text))
     {
-      this.discoveredTiles.push(text);
+      try
+      {
+        this.discoveredTiles.push(text);
+      }
+      catch
+      {
+        alert("Apparently this is not a list: " + this.discoveredTiles.toString())
+      }
       window.localStorage.setItem("discoveredTiles", this.discoveredTiles);
       alert("New tile: " + text);
     }
