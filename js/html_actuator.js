@@ -236,7 +236,7 @@ HTMLActuator.prototype.newTilePopup = function(inner, text)
   rarityBox.style.color = '#f9f6f2';
   rarityBox.style.padding = '60px 30px';
   rarityBox.textContent = "1 in " + this.addCommas(this.getTotalRarity(text));
-  rarityBox.style.opacity = '0';
+  rarityBox.style.opacity = '1';
   rarityBox.style.animation = 'fade-in 3s ease 5s';
   var temp = inner.cloneNode(true);
   displayTile.appendChild(temp);
@@ -246,7 +246,7 @@ HTMLActuator.prototype.newTilePopup = function(inner, text)
   displayTile.style.top = '50%';
   displayTile.style.transform = 'scale(1)';
   displayTile.style.zIndex = '101';
-  displayTile.style.opacity = '0';
+  displayTile.style.opacity = '1';
   document.body.appendChild(rarityBox);
   rarityBox.appendChild(displayTile);
   this.animationRunning = true;
