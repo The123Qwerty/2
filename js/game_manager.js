@@ -80,7 +80,7 @@ GameManager.prototype.addRandomTile = function () {
 
     if (!this.discoveredTiles.includes(text))
     {
-      this.discoveredTiles.append(text);
+      this.discoveredTiles.push(text);
       window.localStorage.setItem("discoveredTiles", this.discoveredTiles);
       alert("New tile: " + text);
     }
