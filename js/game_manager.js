@@ -6,7 +6,6 @@ function GameManager(size, InputManager, Actuator, ScoreManager) {
 
   this.startTiles   = 1;
   this.ids          = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
-  this.discoveredTiles = window.localStorage.getItem("discoveredTiles") == undefined ? [] : window.localstorage.getItem("discoveredTiles");
   
   this.inputManager.on("move", this.move.bind(this));
   this.inputManager.on("restart", this.restart.bind(this));
@@ -76,13 +75,6 @@ GameManager.prototype.addRandomTile = function () {
             i = 0;
           }
         }
-    }
-
-    if (!this.discoveredTiles.includes(text))
-    {
-      this.discoveredTiles.push(text);
-      window.localStorage.setItem("discoveredTiles", this.discoveredTiles);
-      alert("New tile: " + text);
     }
 
     //Assign the first available id and mark it as taken
