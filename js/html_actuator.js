@@ -212,7 +212,7 @@ HTMLActuator.prototype.updateDiscoveredTiles = function(text)
     {
       try
       {
-        this.discoveredTiles.push(text);
+        this.discoveredTiles += text;
       }
       catch
       {
