@@ -198,15 +198,11 @@ HTMLActuator.prototype.setTileColor = function (tileText, inner, newTile, wrappe
       this.triggerRarityGlow(tileText, bgColorsForThisTile);
     }
   }
-  else
-  {
-    this.updateDiscoveredTiles(tileText);
-  }
   
   inner.style.background = 'linear-gradient(to right, ' + bgColorsForThisTile[0] + ', ' + bgColorsForThisTile[1] + ', ' + bgColorsForThisTile[2] + ', ' + bgColorsForThisTile[3] + ')';
 }
 
-HTMLActuator.prototype.updateDiscoveredTiles = function(text)
+HTMLActuator.prototype.updateDiscoveredTiles = function(inner, text)
 {
   if (!this.discoveredTiles.includes(text))
     {
@@ -219,8 +215,42 @@ HTMLActuator.prototype.updateDiscoveredTiles = function(text)
         alert("Apparently this is not a list: " + this.discoveredTiles.toString())
       }
       window.localStorage.setItem("discoveredTiles", this.discoveredTiles);
-      alert("New tile: " + text);
+      this.newTilePopup(inner, text);
     }
+}
+
+HTMLActuator.protoype.newTilePopup = function(inner, text)
+{
+  const displayTile = document.createElement("div");
+  const rarityBox = document.createElement("div");
+  rarityBox.style.position = 'absolute';
+  rarityBox.style.left = (window.innerWidth/2 - 185) + "px";
+  rarityBox.style.top = '5%';
+  rarityBox.style.width = '150px';
+  rarityBox.style.zIndex = '101';
+  rarityBox.style.borderRadius = '6px';
+  rarityBox.style.background = '#857e77';
+  rarityBox.style.fontWeight = 'bold';
+  rarityBox.style.textAlign = 'center';
+  rarityBox.style.fontSize = '15px';
+  rarityBox.style.color = '#f9f6f2';
+  rarityBox.style.padding = '60px 30px';
+  rarityBox.textContent = "1 in " + this.addCommas(this.getTotalRarity(text));
+  rarityBox.style.opacity = '0';
+  rarityBox.style.animation = 'fade-in 3s ease 5s';
+  var temp = inner.cloneNode(true);
+  displayTile.appendChild(temp);
+  displayTile.classList.add("tile");
+  displayTile.style.position = 'relative';
+  displayTile.style.left = '10%';
+  displayTile.style.top = '50%';
+  displayTile.style.transform = 'scale(1)';
+  displayTile.style.zIndex = '101';
+  displayTile.style.opacity = '0';
+  document.body.appendChild(rarityBox);
+  rarityBox.appendChild(displayTile);
+  this.animationRunning = true;
+  setTimeout(() => {this.animationRunning = false; displayTile.remove(); rarityBox.remove();}, 4000);
 }
 
 HTMLActuator.prototype.getTileColor = function(text, font = false)
@@ -307,7 +337,7 @@ HTMLActuator.prototype.triggerRarityGlow = function (tileText, bgColors) {
   q.style.setProperty('--tileColor3', bgColors[2]);
   q.style.setProperty('--tileColor4', bgColors[3]);
   this.animationRunning = true;
-  setTimeout(() => {this.animationRunning = false; this.updateDiscoveredTiles(tileText);}, 3000);
+  setTimeout(() => {this.animationRunning = false;}, 3000);
 }
 
 HTMLActuator.prototype.superRareTileReveal = function (inner, wrapper, text) {
@@ -354,7 +384,7 @@ HTMLActuator.prototype.superRareTileReveal = function (inner, wrapper, text) {
   }
   document.body.appendChild(displayTile);
   this.animationRunning = true;
-  setTimeout(() => {this.animationRunning = false; blackLayer.remove(); displayTile.remove(); rarityBox.remove(); this.tileContainer.appendChild(wrapper); this.updateDiscoveredTiles(tileText);}, 8000);
+  setTimeout(() => {this.animationRunning = false; blackLayer.remove(); displayTile.remove(); rarityBox.remove(); this.tileContainer.appendChild(wrapper); this.updateDiscoveredTiles(inner, text);}, 8000);
 }
 
 HTMLActuator.prototype.ultraRareAnimation = function (bgColors, inner, wrapper, text) {
@@ -479,6 +509,17 @@ HTMLActuator.prototype.addTile = function (tile) {
     {
       // Put the tile on the board
       this.tileContainer.appendChild(wrapper);
+    }
+  }
+  if (classes.includes("tile-new"))
+  {
+    if (this.getTotalRarity(tile.text) < 1000000)
+    {
+      this.updateDiscoveredTiles(inner, tile.text);
+    }
+    if (this.getTotalRarity(tile.text) < 100000000 && this.getTotalRarity(tile.text) >= 1000000)
+    {
+      setTimeout(() => {this.updateDiscoveredTiles(inner, tile.text);}, 3000);
     }
   }
 };
