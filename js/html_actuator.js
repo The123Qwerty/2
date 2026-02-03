@@ -232,10 +232,12 @@ HTMLActuator.prototype.newTilePopup = function(inner, text)
   rarityBox.style.background = '#857e77';
   rarityBox.style.fontWeight = 'bold';
   rarityBox.style.textAlign = 'right';
-  rarityBox.style.fontSize = '23px';
+  rarityBox.style.fontSize = '25px';
   rarityBox.style.color = '#f9f6f2';
   rarityBox.style.padding = '5px 5px';
   rarityBox.textContent = "1 in " + this.addCommas(this.getTotalRarity(text));
+  rarityBox.style.display = "inline-block";
+  rarityBox.style.verticalAlign = "middle";
   rarityBox.style.opacity = '1';
   rarityBox.style.animation = 'fade-in 3s ease 5s';
   var temp = inner.cloneNode(true);
@@ -243,10 +245,11 @@ HTMLActuator.prototype.newTilePopup = function(inner, text)
   displayTile.classList.add("tile");
   displayTile.style.position = 'relative';
   displayTile.style.left = '5%';
-  displayTile.style.top = '5%';
   displayTile.style.transform = 'scale(1)';
   displayTile.style.zIndex = '101';
   displayTile.style.opacity = '1';
+  displayTile.style.display = "inline-block";
+  displayTile.style.verticalAlign = "middle";
   document.body.appendChild(rarityBox);
   rarityBox.appendChild(displayTile);
   this.animationRunning = true;
