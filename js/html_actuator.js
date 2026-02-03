@@ -243,7 +243,7 @@ HTMLActuator.prototype.newTilePopup = function(inner, text)
   var temp = inner.cloneNode(true);
   displayTile.appendChild(temp);
   displayTile.classList.add("tile");
-  displayTile.style.position = 'relative';
+  displayTile.style.position = 'absolute';
   displayTile.style.left = '5%';
   displayTile.style.transform = 'scale(1)';
   displayTile.style.zIndex = '101';
