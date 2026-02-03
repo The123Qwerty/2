@@ -78,10 +78,10 @@ GameManager.prototype.addRandomTile = function () {
         }
     }
 
-    if (!discoveredTiles.includes(text))
+    if (!this.discoveredTiles.includes(text))
     {
-      discoveredTiles.append(text);
-      window.localStorage.setItem("discoveredTiles", discoveredTiles);
+      this.discoveredTiles.append(text);
+      window.localStorage.setItem("discoveredTiles", this.discoveredTiles);
       alert("New tile: " + text);
     }
 
