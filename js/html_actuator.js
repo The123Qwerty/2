@@ -236,7 +236,7 @@ HTMLActuator.prototype.newTilePopup = function(inner, text)
   rarityBox.style.color = '#f9f6f2';
   rarityBox.style.padding = '10px 10px';
   rarityBox.textContent = `New tile discovered:
-  1 in " + this.addCommas(this.getTotalRarity(text))`;
+  1 in ` + this.addCommas(this.getTotalRarity(text));
   rarityBox.style.display = "inline-block";
   rarityBox.style.verticalAlign = "middle";
   rarityBox.style.opacity = '1';
