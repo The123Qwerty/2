@@ -232,10 +232,11 @@ HTMLActuator.prototype.newTilePopup = function(inner, text)
   rarityBox.style.background = '#857e77';
   rarityBox.style.fontWeight = 'bold';
   rarityBox.style.textAlign = 'right';
-  rarityBox.style.fontSize = '25px';
+  rarityBox.style.fontSize = '23px';
   rarityBox.style.color = '#f9f6f2';
   rarityBox.style.padding = '10px 10px';
-  rarityBox.textContent = "New tile discovered: 1 in " + this.addCommas(this.getTotalRarity(text));
+  rarityBox.textContent = `New tile discovered:
+  1 in " + this.addCommas(this.getTotalRarity(text))`;
   rarityBox.style.display = "inline-block";
   rarityBox.style.verticalAlign = "middle";
   rarityBox.style.opacity = '1';
