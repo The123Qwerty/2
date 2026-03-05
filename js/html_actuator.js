@@ -204,11 +204,17 @@ HTMLActuator.prototype.setTileColor = function (tileText, inner, newTile, wrappe
 
 HTMLActuator.prototype.updateDiscoveredTiles = function(inner, text)
 {
+  if (!this.discoveredTiles.includes("|"))
+  {
+    this.discoveredTiles = (text + "|");
+    window.localStorage.setItem("discoveredTiles", this.discoveredTiles);
+    this.newTilePopup(inner, text);
+  }
   if (!this.discoveredTiles.includes(text))
     {
       try
       {
-        this.discoveredTiles += text;
+        this.discoveredTiles += (text + "|");
       }
       catch
       {
