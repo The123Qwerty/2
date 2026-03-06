@@ -206,23 +206,33 @@ HTMLActuator.prototype.updateDiscoveredTiles = function(inner, text)
 {
   if (!this.discoveredTiles.includes("|"))
   {
+    console.log("Discovered tiles didn't follow format: " + this.discoveredTiles + ". Currently trying to add " + text);
     this.discoveredTiles = (text + "|");
+    console.log("Fixed by setting it to " + this.discoveredTiles);
     window.localStorage.setItem("discoveredTiles", this.discoveredTiles);
     this.newTilePopup(inner, text);
   }
-  if (!this.discoveredTiles.includes(text))
+  else
+  {
+    if (!this.discoveredTiles.includes(text))
     {
-      try
-      {
-        this.discoveredTiles += (text + "|");
-      }
-      catch
-      {
-        alert("Apparently this is not a list: " + this.discoveredTiles.toString())
-      }
-      window.localStorage.setItem("discoveredTiles", this.discoveredTiles);
-      this.newTilePopup(inner, text);
+       console.log("New tile discovered: " + text + ". Current discovered tiles: " + this.discoveredTiles);
+       try
+       {
+         this.discoveredTiles += (text + "|");
+       }
+       catch
+       {
+         alert("Apparently this is not a list: " + this.discoveredTiles.toString())
+       }
+       window.localStorage.setItem("discoveredTiles", this.discoveredTiles);
+       this.newTilePopup(inner, text);
     }
+    else
+    {
+      console.log("Not a new tile because " + this.discoveredTiles + " contains " + text);
+    }
+  }
 }
 
 HTMLActuator.prototype.newTilePopup = function(inner, text)
@@ -449,7 +459,9 @@ HTMLActuator.prototype.addCommas = function (number) {
   }
   result = string.substring(0, k + 1) + result;
   if (string == "1.1")
+  {
     return "950";
+  }
   return result;
 }
 
