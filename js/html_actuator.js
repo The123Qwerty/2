@@ -207,14 +207,19 @@ HTMLActuator.prototype.updateDiscoveredTiles = function(inner, text)
   if (!this.discoveredTiles.includes("|"))
   {
     console.log("Discovered tiles didn't follow format: " + this.discoveredTiles + ". Currently trying to add " + text);
-    this.discoveredTiles = (text + "|");
+    this.discoveredTiles = ("|" + text + "|");
     console.log("Fixed by setting it to " + this.discoveredTiles);
     window.localStorage.setItem("discoveredTiles", this.discoveredTiles);
     this.newTilePopup(inner, text);
   }
   else
   {
-    if (!this.discoveredTiles.includes(text))
+    if (this.discoveredTiles[0] != "|")
+    {
+      this.discoveredTiles = "|" + this.discoveredTiles;
+      window.localStorage.setItem("discoveredTiles", this.discoveredTiles);
+    }
+    if (!this.discoveredTiles.includes("|" + text + "|"))
     {
        console.log("New tile discovered: " + text + ". Current discovered tiles: " + this.discoveredTiles);
        try
@@ -230,7 +235,7 @@ HTMLActuator.prototype.updateDiscoveredTiles = function(inner, text)
     }
     else
     {
-      console.log("Not a new tile because " + this.discoveredTiles + " contains " + text);
+      console.log("Not a new tile because " + this.discoveredTiles + " contains " + "|" + text + "|");
     }
   }
 }
