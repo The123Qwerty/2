@@ -463,9 +463,9 @@ HTMLActuator.prototype.addCommas = function (number) {
     k = i - 1;
   }
   result = string.substring(0, k + 1) + result;
-  if (string == "1.1")
+  if (string == "950")
   {
-    return "950";
+    return string;
   }
   return result;
 }
