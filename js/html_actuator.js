@@ -273,9 +273,8 @@ HTMLActuator.prototype.newTilePopup = function(inner, text)
   displayTile.style.display = "inline-block";
   displayTile.style.verticalAlign = "middle";
   document.body.appendChild(rarityBox);
-  rarityBox.appendChild(displayTile);
   this.animationRunning = true;
-  setTimeout(() => {rarityBox.textContent = "1 in " + this.addCommas(this.getTotalRarity(text));}, 2000);
+  setTimeout(() => {rarityBox.textContent = "1 in " + this.addCommas(this.getTotalRarity(text)); rarityBox.appendChild(displayTile);}, 2000);
   setTimeout(() => {this.animationRunning = false; displayTile.remove(); rarityBox.remove();}, 6000);
 }
 
