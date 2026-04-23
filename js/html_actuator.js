@@ -257,7 +257,7 @@ HTMLActuator.prototype.newTilePopup = function(inner, text)
   rarityBox.style.fontSize = '23px';
   rarityBox.style.color = '#f9f6f2';
   rarityBox.style.padding = '10px 10px';
-  rarityBox.textContent = "1 in " + this.addCommas(this.getTotalRarity(text));
+  rarityBox.textContent = "New tile!";
   rarityBox.style.display = "inline-block";
   rarityBox.style.verticalAlign = "middle";
   rarityBox.style.opacity = '1';
@@ -275,7 +275,8 @@ HTMLActuator.prototype.newTilePopup = function(inner, text)
   document.body.appendChild(rarityBox);
   rarityBox.appendChild(displayTile);
   this.animationRunning = true;
-  setTimeout(() => {this.animationRunning = false; displayTile.remove(); rarityBox.remove();}, 4000);
+  setTimeout(() => {rarityBox.textContent = "1 in " + this.addCommas(this.getTotalRarity(text));}, 2000);
+  setTimeout(() => {this.animationRunning = false; displayTile.remove(); rarityBox.remove();}, 6000);
 }
 
 HTMLActuator.prototype.getTileColor = function(text, font = false)
