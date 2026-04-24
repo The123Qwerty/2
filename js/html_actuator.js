@@ -261,7 +261,7 @@ HTMLActuator.prototype.newTilePopup = function(inner, text)
   rarityBox.style.display = "inline-block";
   rarityBox.style.verticalAlign = "middle";
   rarityBox.style.opacity = '1';
-  rarityBox.style.animation = 'fade-in 6s ease';
+  rarityBox.style.animation = 'fade-in 1s ease';
   var temp = inner.cloneNode(true);
   displayTile.appendChild(temp);
   displayTile.classList.add("tile");
