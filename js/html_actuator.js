@@ -189,7 +189,7 @@ HTMLActuator.prototype.openMenu = function () {
   blackLayer.style.width = '100vw';
   blackLayer.style.height = '100vh';
   blackLayer.style.zIndex = '100';
-  blacklayer.id = "blackLayer";
+  blackLayer.id = "blackLayer";
   document.body.appendChild(blackLayer);
   }
   else {
