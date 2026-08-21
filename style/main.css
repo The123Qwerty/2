@@ -107,7 +107,7 @@ h1.title {
   content: "Best"; }
 
 .menuButton {
-position: relative;
+position: absolute;
 right: 10px;
 top: 10px;
 background: #857e77;
