@@ -5,6 +5,12 @@ function HTMLActuator() {
   this.messageContainer = document.querySelector(".game-message");
   this.sharingContainer = document.querySelector(".score-sharing");
   this.animationRunning = false;
+  this.menuOpen = false;
+  const button = document.createElement("button");
+  button.innerHTML = "☰";
+  button.className = "menuButton";
+  button.onclick = this.openMenu;
+  document.body.appendChild(button);
   this.discoveredTiles = window.localStorage.getItem("discoveredTiles") == undefined ? [] : window.localStorage.getItem("discoveredTiles");
   this.tileData = [
     ["3", 10000000, '#2170c4'],
@@ -152,6 +158,10 @@ HTMLActuator.prototype.clearContainer = function (container) {
     container.removeChild(container.firstChild);
   }
 };
+
+HTMLActuator.prototype.openMenu = function () {
+  this.menuOpen = !this.menuOpen;
+}
 
 HTMLActuator.prototype.setTileColor = function (tileText, inner, newTile, wrapper) {
   var bgColorsForThisTile = [];
