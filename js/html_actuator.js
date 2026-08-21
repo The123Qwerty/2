@@ -11,6 +11,7 @@ function HTMLActuator() {
   button.className = "menuButton";
   button.id = "menuButton";
   button.onclick = this.openMenu;
+  button.style.zIndex = '101';
   document.body.appendChild(button);
   this.discoveredTiles = window.localStorage.getItem("discoveredTiles") == undefined ? [] : window.localStorage.getItem("discoveredTiles");
   this.tileData = [
