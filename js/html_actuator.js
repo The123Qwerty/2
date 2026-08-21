@@ -178,6 +178,7 @@ HTMLActuator.prototype.openMenu = function () {
   menuBox.style.color = '#f9f6f2';
   menuBox.textContent = "Discovered tiles:";
   menuBox.id = "menuBox";
+  menuBox.style.overflowY = 'auto';
   document.body.appendChild(menuBox);
   document.getElementById("menuButton").innerHTML = "X";
   const blackLayer = document.createElement("div");
@@ -283,6 +284,27 @@ HTMLActuator.prototype.updateDiscoveredTiles = function(inner, text)
       console.log("Not a new tile because " + this.discoveredTiles + " contains " + "|" + text + "|");
     }
   }
+}
+
+HTMLActuator.prototype.createTileList = function(discoveredTiles)
+{
+  let result = [];
+  let tempResult = "";
+  for (let i = 0; i < discoveredTiles.length; i++)
+  {
+    if (discoveredTiles[i] == "|")
+    {
+      result.push(tempResult);
+      i++;
+      if (i == discoveredTiles.length) {break;}
+      tempResult = discoveredTiles[i];
+    }
+    else
+    {
+      tempresult += discoveredTiles[i];
+    }
+  }
+  return result;
 }
 
 HTMLActuator.prototype.newTilePopup = function(inner, text)
