@@ -9,6 +9,7 @@ function HTMLActuator() {
   const button = document.createElement("button");
   button.innerHTML = "☰";
   button.className = "menuButton";
+  button.id = "menuButton";
   button.onclick = this.openMenu;
   document.body.appendChild(button);
   this.discoveredTiles = window.localStorage.getItem("discoveredTiles") == undefined ? [] : window.localStorage.getItem("discoveredTiles");
@@ -161,6 +162,29 @@ HTMLActuator.prototype.clearContainer = function (container) {
 
 HTMLActuator.prototype.openMenu = function () {
   this.menuOpen = !this.menuOpen;
+  if (menuOpen) {
+  const menuBox = document.createElement("div");
+  menuBox.style.position = 'absolute';
+  menuBox.style.left = (window.innerWidth*0.1) + "px";
+  menuBox.style.top = (window.innerHeight*0.1) + "px";
+  menuBox.style.width = (window.innerWidth*0.8) + 'px';
+  menuBox.style.height = (window.innerHeight*0.8) + 'px';
+  menuBox.style.zIndex = '101';
+  menuBox.style.borderRadius = '6px';
+  menuBox.style.background = '#857e77';
+  menuBox.style.fontWeight = 'bold';
+  menuBox.style.textAlign = 'center';
+  menuBox.style.fontSize = '30px';
+  menuBox.style.color = '#f9f6f2';
+  menuBox.textContent = "Discovered tiles:";
+  menuBox.id = "menuBox";
+  document.body.appendChild(menuBox);
+  document.getElementById("menuButton").innerHTML = "X";
+  }
+  else {
+  document.getElementById("menuBox").remove();
+  document.getElementById("menuButton").innerHTML = "☰";
+  }
 }
 
 HTMLActuator.prototype.setTileColor = function (tileText, inner, newTile, wrapper) {
