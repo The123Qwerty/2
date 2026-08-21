@@ -180,9 +180,20 @@ HTMLActuator.prototype.openMenu = function () {
   menuBox.id = "menuBox";
   document.body.appendChild(menuBox);
   document.getElementById("menuButton").innerHTML = "X";
+  const blackLayer = document.createElement("div");
+  blackLayer.style.position = 'absolute';
+  blackLayer.style.background = 'rgba(0, 0, 0, 0.7)';
+  blackLayer.style.left = '0px';
+  blackLayer.style.top = '0px';
+  blackLayer.style.width = '100vw';
+  blackLayer.style.height = '100vh';
+  blackLayer.style.zIndex = '100';
+  blacklayer.id = "blackLayer";
+  document.body.appendChild(blackLayer);
   }
   else {
   document.getElementById("menuBox").remove();
+  document.getElementById("blackLayer").remove();
   document.getElementById("menuButton").innerHTML = "☰";
   }
 }
