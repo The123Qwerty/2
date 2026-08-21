@@ -162,7 +162,7 @@ HTMLActuator.prototype.clearContainer = function (container) {
 
 HTMLActuator.prototype.openMenu = function () {
   this.menuOpen = !this.menuOpen;
-  if (menuOpen) {
+  if (this.menuOpen) {
   const menuBox = document.createElement("div");
   menuBox.style.position = 'absolute';
   menuBox.style.left = (window.innerWidth*0.1) + "px";
