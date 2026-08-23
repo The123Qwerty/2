@@ -6,11 +6,12 @@ function HTMLActuator() {
   this.sharingContainer = document.querySelector(".score-sharing");
   this.animationRunning = false;
   this.menuOpen = false;
+  this.sortedBy = "recency";
   const button = document.createElement("button");
   button.innerHTML = "☰";
   button.className = "menuButton";
   button.id = "menuButton";
-  button.onclick = this.openMenu.bind(this);
+  button.onclick = () => this.openMenu();
   button.style.zIndex = '101';
   document.body.appendChild(button);
   this.discoveredTiles = window.localStorage.getItem("discoveredTiles") == undefined ? [] : window.localStorage.getItem("discoveredTiles");
@@ -161,11 +162,23 @@ HTMLActuator.prototype.clearContainer = function (container) {
   }
 };
 
-HTMLActuator.prototype.openMenu = function () {
+HTMLActuator.prototype.openMenu = function (refresh = false) {
   this.menuOpen = !this.menuOpen;
+  if (!this.menuOpen) {
+  document.getElementById("menuBox").remove();
+  document.getElementById("blackLayer").remove();
+  document.getElementById("menuButton").innerHTML = "☰";
+  }
+  if (refresh) {
+    this.menuOpen = true;
+  }
   if (this.menuOpen) {
   const menuBox = document.createElement("div");
   const menuTitle = document.createElement("div");
+  const sortButton = document.createElement("button");
+  sortButton.classList.add("menuButton");
+  sortButton.textContent = "Sort by Rarity";
+  sortButton.style.width = "auto";
   menuTitle.textContent = "Discovered Tiles";
   menuTitle.style.fontSize = "40px";
   menuTitle.style.fontWeight = "bold";
@@ -185,10 +198,17 @@ HTMLActuator.prototype.openMenu = function () {
   menuBox.style.color = '#f9f6f2';
   menuBox.id = "menuBox";
   menuBox.style.display = "grid";
-  let tiles = this.createTileList(this.discoveredTiles);
+  let tiles = this.sortDiscoveredTiles(this.createTileList(this.discoveredTiles), this.sortedBy);
   const string = "auto ";
   console.log("Width: " + menuBox.style.width);
   const columnCount = Math.floor(menuBox.style.width.replace("px", "") / (52.25 * 1.5 + 20));
+  sortButton.style.gridArea = "1 / " + (Math.ceil(columnCount * 0.7)) + " / span 1 / span " + (columnCount - Math.ceil(columnCount * 0.7) + 1);
+  sortButton.textContent = this.sortedBy == "recency" ? "Sort by Rarity" : "Sort by Recency";
+  sortButton.onclick = () => {
+    console.log("Sort button clicked");
+    this.sortedBy = this.sortedBy == "recency" ? "rarity" : "recency";
+    this.openMenu(true);
+  }
   const rowCount = Math.floor(menuBox.style.height.replace("px", "") / 80);
   console.log("columnCount: " + columnCount + ", rowCount: " + rowCount);
   menuBox.style.gridTemplateColumns = string.repeat(columnCount);
@@ -199,6 +219,7 @@ HTMLActuator.prototype.openMenu = function () {
   menuBox.style.overflowY = 'auto';
   menuTitle.style.gridArea = "span 1 / span " + columnCount;
   menuBox.appendChild(menuTitle);
+  menuBox.appendChild(sortButton);
   document.getElementById("menuButton").innerHTML = "X";
   const blackLayer = document.createElement("div");
   blackLayer.style.position = 'absolute';
@@ -250,7 +271,7 @@ HTMLActuator.prototype.openMenu = function () {
     holder.style.zIndex = '102';
     holder.style.gridTemplateColumns = "auto";
     holder.style.gridTemplateRows = "auto auto";
-    holder.style.gridArea = Math.floor((i + 1) / columnCount) + 2 + "/" + (((i + 1) % columnCount));
+    holder.style.gridArea = Math.floor(i / columnCount) + 2 + "/" + ((i % columnCount + 1));
     console.log("Holder was placed at: " + holder.style.gridArea + " because i is " + i);
     holder.style.gap = "50px";
     holder.style.justifyItems = "center";
@@ -261,11 +282,6 @@ HTMLActuator.prototype.openMenu = function () {
   }
   document.body.appendChild(menuBox);
   document.body.appendChild(blackLayer);
-  }
-  else {
-  document.getElementById("menuBox").remove();
-  document.getElementById("blackLayer").remove();
-  document.getElementById("menuButton").innerHTML = "☰";
   }
 }
 
@@ -378,6 +394,18 @@ HTMLActuator.prototype.createTileList = function(discoveredTiles)
     }
   }
   return result;
+}
+
+HTMLActuator.prototype.sortDiscoveredTiles = function (tileList, sortBy)
+{
+  if (sortBy == "rarity")
+  {
+    return tileList.sort((a, b) => this.getTotalRarity(a) - this.getTotalRarity(b));
+  }
+  else if (sortBy == "recency")
+  {
+    return this.createTileList(this.discoveredTiles);
+  }
 }
 
 HTMLActuator.prototype.newTilePopup = function(inner, text)
