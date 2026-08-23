@@ -187,7 +187,8 @@ HTMLActuator.prototype.openMenu = function () {
   menuBox.style.display = "grid";
   let tiles = this.createTileList(this.discoveredTiles);
   const string = "auto ";
-  const columnCount = Math.floor(menuBox.style.width.replace("px", "") / 60);
+  console.log("Width: " + menuBox.style.width);
+  const columnCount = Math.floor(menuBox.style.width.replace("px", "") / (52.25 * 1.5 + 20));
   const rowCount = Math.floor(menuBox.style.height.replace("px", "") / 80);
   console.log("columnCount: " + columnCount + ", rowCount: " + rowCount);
   menuBox.style.gridTemplateColumns = string.repeat(columnCount);
@@ -226,11 +227,25 @@ HTMLActuator.prototype.openMenu = function () {
     inner = this.setTileColor(tiles[i], inner, false, null);
     tile.classList.add("tile");
     tile.appendChild(inner);
-    //tile.style.display = "inline-block";
+    tile.style.display = "inline-block";
     tile.style.transform = "scale(1.5)";
     tile.style.gridArea = "1 / 1";
+    if (inner.textContent.length > 3)
+  {
+    if (inner.textContent.includes("."))
+    {
+      inner.style.fontSize = "22px";
+    }
+    else
+    {
+      inner.style.fontSize = "18px";
+    }
+  }
+  if (inner.textContent.length == 3 && !(inner.textContent.includes(".")))
+  {
+    inner.style.fontSize = "25px";
+  }
     //holder.style.width = (52.25 * 1.5) + "px";
-    //holder.style.margin = "10px";
     holder.style.display = "grid";
     holder.style.zIndex = '102';
     holder.style.gridTemplateColumns = "auto";
