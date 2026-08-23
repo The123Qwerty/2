@@ -10,7 +10,7 @@ function HTMLActuator() {
   button.innerHTML = "☰";
   button.className = "menuButton";
   button.id = "menuButton";
-  button.onclick = this.openMenu;
+  button.onclick = this.openMenu.bind(this);
   button.style.zIndex = '101';
   document.body.appendChild(button);
   this.discoveredTiles = window.localStorage.getItem("discoveredTiles") == undefined ? [] : window.localStorage.getItem("discoveredTiles");
@@ -165,6 +165,12 @@ HTMLActuator.prototype.openMenu = function () {
   this.menuOpen = !this.menuOpen;
   if (this.menuOpen) {
   const menuBox = document.createElement("div");
+  const menuTitle = document.createElement("div");
+  menuTitle.textContent = "Discovered Tiles";
+  menuTitle.style.fontSize = "40px";
+  menuTitle.style.fontWeight = "bold";
+  menuTitle.style.textAlign = "center";
+  menuTitle.style.color = '#f9f6f2';
   menuBox.style.position = 'absolute';
   menuBox.style.left = (window.innerWidth*0.1) + "px";
   menuBox.style.top = (window.innerHeight*0.1) + "px";
@@ -172,15 +178,26 @@ HTMLActuator.prototype.openMenu = function () {
   menuBox.style.height = (window.innerHeight*0.8) + 'px';
   menuBox.style.zIndex = '101';
   menuBox.style.borderRadius = '6px';
-  menuBox.style.background = '#857e77';
+  menuBox.style.background = '#aca8a4';
   menuBox.style.fontWeight = 'bold';
   menuBox.style.textAlign = 'center';
   menuBox.style.fontSize = '30px';
   menuBox.style.color = '#f9f6f2';
-  menuBox.textContent = "Discovered tiles:";
   menuBox.id = "menuBox";
+  menuBox.style.display = "grid";
+  let tiles = this.createTileList(this.discoveredTiles);
+  const string = "auto ";
+  const columnCount = Math.floor(menuBox.style.width.replace("px", "") / 60);
+  const rowCount = Math.floor(menuBox.style.height.replace("px", "") / 80);
+  console.log("columnCount: " + columnCount + ", rowCount: " + rowCount);
+  menuBox.style.gridTemplateColumns = string.repeat(columnCount);
+  menuBox.style.gridTemplateRows = string.repeat(Math.max(Math.ceil(tiles.length / columnCount), rowCount));
+  //menuBox.style.gap = "10px";
+  menuBox.style.border = "5px solid #857e77";
+  console.log("gridTemplateRows: " + string.repeat(Math.max(Math.ceil(tiles.length / columnCount), rowCount)));
   menuBox.style.overflowY = 'auto';
-  document.body.appendChild(menuBox);
+  menuTitle.style.gridArea = "span 1 / span " + columnCount;
+  menuBox.appendChild(menuTitle);
   document.getElementById("menuButton").innerHTML = "X";
   const blackLayer = document.createElement("div");
   blackLayer.style.position = 'absolute';
@@ -191,6 +208,43 @@ HTMLActuator.prototype.openMenu = function () {
   blackLayer.style.height = '100vh';
   blackLayer.style.zIndex = '100';
   blackLayer.id = "blackLayer";
+  for (let i = 0; i < tiles.length; i++)
+  {
+    const holder = document.createElement("div");
+    const tile = document.createElement("div");
+    let inner = document.createElement("div");
+    const rarity = document.createElement("div");
+    rarity.style.fontSize = "15px";
+    rarity.style.color = "#f9f6f2";
+    rarity.textContent = "1 in " + this.shortenNumber(this.getTotalRarity(tiles[i]));
+    rarity.style.textAlign = "center";
+    rarity.style.position = "relative";
+    rarity.style.fontWeight = "bold";
+    rarity.style.gridArea = "2 / 1";
+    inner.classList.add("tile-inner");
+    inner.textContent = tiles[i];
+    inner = this.setTileColor(tiles[i], inner, false, null);
+    tile.classList.add("tile");
+    tile.appendChild(inner);
+    //tile.style.display = "inline-block";
+    tile.style.transform = "scale(1.5)";
+    tile.style.gridArea = "1 / 1";
+    //holder.style.width = (52.25 * 1.5) + "px";
+    //holder.style.margin = "10px";
+    holder.style.display = "grid";
+    holder.style.zIndex = '102';
+    holder.style.gridTemplateColumns = "auto";
+    holder.style.gridTemplateRows = "auto auto";
+    holder.style.gridArea = Math.floor((i + 1) / columnCount) + 2 + "/" + (((i + 1) % columnCount));
+    console.log("Holder was placed at: " + holder.style.gridArea + " because i is " + i);
+    holder.style.gap = "50px";
+    holder.style.justifyItems = "center";
+    holder.style.margin = "10px";
+    holder.appendChild(tile);
+    holder.appendChild(rarity);
+    menuBox.appendChild(holder);
+  }
+  document.body.appendChild(menuBox);
   document.body.appendChild(blackLayer);
   }
   else {
@@ -247,6 +301,7 @@ HTMLActuator.prototype.setTileColor = function (tileText, inner, newTile, wrappe
   }
   
   inner.style.background = 'linear-gradient(to right, ' + bgColorsForThisTile[0] + ', ' + bgColorsForThisTile[1] + ', ' + bgColorsForThisTile[2] + ', ' + bgColorsForThisTile[3] + ')';
+  return inner;
 }
 
 HTMLActuator.prototype.updateDiscoveredTiles = function(inner, text)
@@ -295,14 +350,16 @@ HTMLActuator.prototype.createTileList = function(discoveredTiles)
   {
     if (discoveredTiles[i] == "|")
     {
-      result.push(tempResult);
+      if (tempResult !== "") {
+        result.push(tempResult);
+      }
       i++;
       if (i == discoveredTiles.length) {break;}
       tempResult = discoveredTiles[i];
     }
     else
     {
-      tempresult += discoveredTiles[i];
+      tempResult += discoveredTiles[i];
     }
   }
   return result;
@@ -536,6 +593,26 @@ HTMLActuator.prototype.addCommas = function (number) {
     return string;
   }
   return result;
+}
+
+HTMLActuator.prototype.shortenNumber = function (number) {
+if (number >= 1000000000000)
+{
+  return (number / 1000000000000) + "T";
+}
+if (number >= 1000000000)
+{
+  return (number / 1000000000) + "B";
+}
+if (number >= 1000000)
+{
+  return (number / 1000000) + "M";
+}
+if (number >= 1000)
+{
+  return (number / 1000) + "K";
+}
+return number;
 }
 
 HTMLActuator.prototype.addTile = function (tile) {
