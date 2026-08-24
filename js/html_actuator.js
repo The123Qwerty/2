@@ -203,10 +203,10 @@ HTMLActuator.prototype.openMenu = function (refresh = false) {
   console.log("Width: " + menuBox.style.width);
   const columnCount = Math.floor(menuBox.style.width.replace("px", "") / (52.25 * 1.5 + 20));
   sortButton.style.gridArea = "1 / " + (Math.ceil(columnCount * 0.7)) + " / span 1 / span " + (columnCount - Math.ceil(columnCount * 0.7) + 1);
-  sortButton.textContent = this.sortedBy == "recency" ? "Sort by Rarity" : "Sort by Recency";
+  sortButton.textContent = this.sortedBy == "recency" ? "Sort by Rarity" : this.sortedBy == "rarity" ? "Sort by Value" : "Sort by Recency";
   sortButton.onclick = () => {
     console.log("Sort button clicked");
-    this.sortedBy = this.sortedBy == "recency" ? "rarity" : "recency";
+    this.sortedBy = this.sortedBy == "recency" ? "rarity" : this.sortedBy == "rarity" ? "value" : "recency";
     this.openMenu(true);
   }
   const rowCount = Math.floor(menuBox.style.height.replace("px", "") / 80);
@@ -405,6 +405,10 @@ HTMLActuator.prototype.sortDiscoveredTiles = function (tileList, sortBy)
   else if (sortBy == "recency")
   {
     return this.createTileList(this.discoveredTiles);
+  }
+  else if (sortBy == "value")
+  {
+    return tileList.sort();
   }
 }
 
